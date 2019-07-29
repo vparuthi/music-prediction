@@ -1,0 +1,18 @@
+{
+    "features": [
+        "dancing",
+        "shopping centres",
+        "spending on looks",
+        "musical instruments",
+        "shopping",
+        "cars",
+        "reading",
+        "comedy",
+        "rats",
+        "gender_1"
+    ],
+    "hyperparamters": {
+        "k": 4,
+        "s": 0.5
+    }
+}
