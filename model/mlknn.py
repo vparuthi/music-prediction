@@ -29,4 +29,3 @@ def predict(clf, response):
 
     # clf.predict() returns a sparse matrix and toarray() is utilized to convert it to a list
     return clf.predict(np.asarray([response])).toarray()[0]
-
