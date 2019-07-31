@@ -1,19 +1,32 @@
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
 from skmultilearn.adapt import MLkNN
-from sklearn.model_selection import GridSearchCV
-import seaborn as sns
-import matplotlib.pyplot as plt
-import statistics
-import scipy
-from itertools import combinations
-pd.options.mode.chained_assignment = None  # default='warn'
-from multiprocessing import Pool
-from itertools import repeat
-from itertools import compress
-import json
 
-MUSIC_CHOICES = ['classical music', 'pop', 'metal or hardrock', 'hiphop, rap', 'latino', 'alternative']
+
+def create_model(question_data, music_data, k, s):
+    """
+    Creates and trains a MLkNN classifier
+
+    :param DataFrame question_data: X data
+    :param DataFrame music_data: y data
+    :param int k: it is a MLkNN hyperparameter that represents number of neighbours compared to
+    :param int s: it is a MLkNN hyperparameter known as the smoothing factor
+    :return: a trained sklearn MLkNN classifier
+    """
+    clf = MLkNN(k=k, s=s)
+    clf.fit(question_data.values, music_data.values)
+    return clf
+
+
+def predict(clf, response):
+    """
+    Predicts the genres of music that a user likes
+
+    :param MLkNN_model clf: a trained sklearn MLkNN classifier
+    :param list response: a list of integers containing user responses for each question
+    :return:
+    """
+
+    # clf.predict() returns a sparse matrix and toarray() is utilized to convert it to a list
+    return clf.predict(np.asarray([response])).toarray()[0]
 
