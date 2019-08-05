@@ -14,5 +14,13 @@
     "hyperparamters": {
         "k": 4,
         "s": 0.5
-    }
+    },
+    "genres": [
+        "classical music",
+        "pop",
+        "metal or hardrock",
+        "hiphop, rap",
+        "latino",
+        "alternative"
+    ]
 }

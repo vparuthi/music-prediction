@@ -18,14 +18,14 @@ def create_model(question_data, music_data, k, s):
     return clf
 
 
-def predict(clf, response):
+def predict(clf, question_answers):
     """
     Predicts the genres of music that a user likes
 
     :param MLkNN_model clf: a trained sklearn MLkNN classifier
-    :param list response: a list of integers containing user responses for each question
+    :param list question_answers: a list of integers containing user responses for each question
     :return:
     """
 
     # clf.predict() returns a sparse matrix and toarray() is utilized to convert it to a list
-    return clf.predict(np.asarray([response])).toarray()[0]
+    return list(clf.predict(np.asarray([question_answers])).toarray()[0])
