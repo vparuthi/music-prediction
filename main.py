@@ -5,9 +5,12 @@ import pickle
 from flask import Flask, render_template, url_for, request
 import csv
 from itertools import compress
+import requests
+import config
 
 OPTIMIZED_MODEL_PARAMETERS_FILE_PATH = './resources/final_model_values.json'
 FINAL_MLKNN_MODEL_FILE_PATH = './model/finalized_MLkNN_model.sav'
+SPOTIFY_SEARCH_API_URL = 'https://api.spotify.com/v1/search?q='
 app = Flask(__name__)
 
 
@@ -19,6 +22,10 @@ def process():
     with open(OPTIMIZED_MODEL_PARAMETERS_FILE_PATH) as file:
         genres = json.load(file)['genres']
     genres = list(compress(genres, predicted_values))
+    spotify_api_results = []
+    return requests.get(SPOTIFY_SEARCH_API_URL + 'hip hop and rap'.replace(' ', '+') + '&type=playlist', headers={'Authorization': config.SPOTIFY_WEB_API_SECRET_KEY})
+    # for genre in genres:
+
     return ', '.join(str(x) for x in genres)
 
 
@@ -28,8 +35,8 @@ def index():
         questions = json.load(file)['features']
     with open('./resources/columns.csv', mode='r') as infile:
         reader = csv.reader(infile)
-        question_corrleations = dict((rows[1], rows[0]) for rows in reader)
-    questions = [question_corrleations[question.capitalize()] for question in questions]
+        question_correlations = dict((rows[1], rows[0]) for rows in reader)
+    questions = [question_correlations[question.capitalize()] for question in questions]
     return render_template('index.html', questions=questions)
 
 
