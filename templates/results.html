@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<h2>Your results fam. dont even lie you kno they bare accurate. these playlists slap so click them and git ready to vibe</h2>
+{% endblock %}
+
+{% block body %}
+
+    {% for genre, playlists in genres.items() %}
+        <div class="genre">
+            <h2 class="genre-title">{{genre.title()}}</h2>
+            {% for playlist in playlists.get('playlists').get('items') %}
+                {% for image in playlist.get('images')%}
+                    <a href={{playlist.get('external_urls').get('spotify')}}>
+                        <img src={{image.get('url')}} class="playlist-image">
+                    </a>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+{% endblock %}

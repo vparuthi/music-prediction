@@ -6,27 +6,40 @@ from flask import Flask, render_template, url_for, request
 import csv
 from itertools import compress
 import requests
-import config
+import base64
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+import configparser
 
 OPTIMIZED_MODEL_PARAMETERS_FILE_PATH = './resources/final_model_values.json'
 FINAL_MLKNN_MODEL_FILE_PATH = './model/finalized_MLkNN_model.sav'
 SPOTIFY_SEARCH_API_URL = 'https://api.spotify.com/v1/search?q='
+CONFIG_FILE_PATH = 'config.ini'
 app = Flask(__name__)
 
 
-@app.route('/process_survey', methods=['POST'])
+@app.route('/process_survey', methods=['GET'])
 def process():
-    form_values = request.form
+    form_values = request.args
     clf = pickle.load(open(FINAL_MLKNN_MODEL_FILE_PATH, 'rb'))
-    predicted_values = model.mlknn.predict(clf, list(form_values.values()))
-    with open(OPTIMIZED_MODEL_PARAMETERS_FILE_PATH) as file:
-        genres = json.load(file)['genres']
-    genres = list(compress(genres, predicted_values))
-    spotify_api_results = []
-    return requests.get(SPOTIFY_SEARCH_API_URL + 'hip hop and rap'.replace(' ', '+') + '&type=playlist', headers={'Authorization': config.SPOTIFY_WEB_API_SECRET_KEY})
-    # for genre in genres:
+    # predicted_values = model.mlknn.predict(clf, list(form_values.values()))
+    # with open(OPTIMIZED_MODEL_PARAMETERS_FILE_PATH) as file:
+    #     genres = json.load(file)['genres']
+    # genres = list(compress(genres, predicted_values))
+    config = configparser.ConfigParser()
+    config.read(CONFIG_FILE_PATH)
+    spotify_api_keys = config['spotify api']
 
-    return ', '.join(str(x) for x in genres)
+    client_credentials_manager = SpotifyClientCredentials(client_id=spotify_api_keys['CLIENT_ID'],
+                                                          client_secret=spotify_api_keys['CLIENT_SECRET'])
+    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+    spotify_api_results = {'hip hop': sp.search(q='hip hop', type='playlist', limit=6)}
+    # for genre in genres:
+    #     spotify_api_results[genre] = sp.search(q=genre, type='playlist', limit=6)
+
+    return render_template('results.html', genres=spotify_api_results)
+
 
 
 @app.route('/')
@@ -37,7 +50,7 @@ def index():
         reader = csv.reader(infile)
         question_correlations = dict((rows[1], rows[0]) for rows in reader)
     questions = [question_correlations[question.capitalize()] for question in questions]
-    return render_template('index.html', questions=questions)
+    return render_template('survey.html', questions=questions)
 
 
 def create_new_model():

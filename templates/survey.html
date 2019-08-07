@@ -10,7 +10,7 @@
         If the mandems answers these questions imma predict a fireee song for your headtop using the power of ML fam<br>
         Just bless yourself and answers these questions<br>
         5 means mans rates it bare and 0 means get that waste outta here</div>
-    <form method="POST" action="/process_survey">
+    <form method="GET" action="/process_survey">
         {% for question in questions %}
             <div class="question">
                 <h3>{{question.title()}}</h3>
