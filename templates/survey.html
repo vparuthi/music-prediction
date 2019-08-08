@@ -2,6 +2,7 @@
 
 {% block head %}
 <h1>Music Prediction Survey</h1>
+<script src="{{url_for('static', filename='js/survey.js')}}" defer></script>
 {% endblock %}
 
 {% block body %}
@@ -10,19 +11,23 @@
         If the mandems answers these questions imma predict a fireee song for your headtop using the power of ML fam<br>
         Just bless yourself and answers these questions<br>
         5 means mans rates it bare and 0 means get that waste outta here</div>
-    <form method="GET" action="/process_survey">
+    <form method="GET" action="/process_survey" class="survey-form">
         {% for question in questions %}
             <div class="question">
                 <h3>{{question.title()}}</h3>
                 {% if 'Gender' in question %}
-                    <label for="male">Male</label>
-                    <input type="radio" name="{{question}}" id="male" value="1">
-                    <label for="female">Female</label>
-                    <input type="radio" name="{{question}}" id="female" value="0">
+                    <fieldset>
+                        <label for="male">Male</label>
+                        <input type="radio" name="{{question}}" id="male" value="1">
+                        <label for="female">Female</label>
+                        <input type="radio" name="{{question}}" id="female" value="0">
+                    </fieldset>
                 {% else %}
                     {% for rank in range(6) %}
-                        <label for={{rank}}>{{rank}}</label>
-                        <input type="radio" name="{{question}}" id={{rank}} value={{rank}}>
+                        <fieldset>
+                            <label for={{rank}}>{{rank}}</label>
+                            <input type="radio" name="{{question}}" id={{rank}} value={{rank}}>
+                        </fieldset>
                     {% endfor %}
                 {% endif %}
 

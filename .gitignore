@@ -108,3 +108,6 @@ venv.bak/
 
 # configuration files
 *.ini
+
+# vendor files
+/vendor
