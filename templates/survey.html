@@ -12,27 +12,48 @@
         Just bless yourself and answers these questions<br>
         5 means mans rates it bare and 0 means get that waste outta here</div>
     <form method="GET" action="/process_survey" class="survey-form">
-        {% for question in questions %}
-            <div class="question">
-                <h3>{{question.title()}}</h3>
-                {% if 'Gender' in question %}
-                    <fieldset>
-                        <label for="male">Male</label>
-                        <input type="radio" name="{{question}}" id="male" value="1">
-                        <label for="female">Female</label>
-                        <input type="radio" name="{{question}}" id="female" value="0">
-                    </fieldset>
-                {% else %}
-                    {% for rank in range(6) %}
-                        <fieldset>
-                            <label for={{rank}}>{{rank}}</label>
-                            <input type="radio" name="{{question}}" id={{rank}} value={{rank}}>
-                        </fieldset>
-                    {% endfor %}
-                {% endif %}
-
-            </div><br>
-        {% endfor %}
+        <div class="container-fluid">
+            {% for question in questions %}
+                <div class="row">
+                    <div class="col">
+                        <h3 class="question-title">{{question.title()}}</h3>
+                    </div>
+                </div>
+                <div class="question-options row">
+                    {% if 'Gender' in question %}
+                        <div class="col">
+                            <fieldset>
+                                <label for="male">Male</label>
+                                <input type="radio" name="{{question}}" id="male" value="1" required>
+                            </fieldset>
+                        </div>
+                        <div class="col">
+                            <fieldset>
+                                <label for="female">Female</label>
+                                <input type="radio" name="{{question}}" id="female" value="0" required>
+                            </fieldset>
+                        </div>
+                    {% else %}
+                        {% for rank in range(6) %}
+                            <div class="col">
+                                <fieldset>
+                                    <label for={{rank}}>{{rank}}</label>
+                                    <input type="radio" name="{{question}}" id={{rank}} value={{rank}} required>
+                                </fieldset>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-primary">Previous</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-primary">Next</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
         <input type="submit" value="Submit">
     </form>
 </div>

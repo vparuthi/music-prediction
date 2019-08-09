@@ -41,7 +41,6 @@ def process():
     return render_template('results.html', genres=spotify_api_results)
 
 
-
 @app.route('/')
 def index():
     with open(OPTIMIZED_MODEL_PARAMETERS_FILE_PATH) as file:

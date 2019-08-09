@@ -110,4 +110,4 @@ venv.bak/
 *.ini
 
 # vendor files
-/vendor
+static/js/vendor/
