@@ -23,14 +23,22 @@
             </div>
         </div>
     </div>
-    <form method="GET" action="/process_survey" class="survey-form">
+    <div class="form">
         <h3 class="question-title"></h3>
         <div class="form-check form-check-inline"></div>
         <div class="form-row-inline">
-            <button type="button" class="btn btn-primary previous-btn">Previous</button>
-            <button type="button" class="btn btn-primary next-btn">Next</button>
-            <input type="submit" class="btn btn-primary predict-btn">
+            <div class="col">
+                <button type="button" class="btn btn-info btn-circle btn-xl previous-btn"><i class="fas fa-arrow-left"></i></button>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-info btn-circle btn-xl next-btn"><i class="fas fa-arrow-right"></i></button>
+            </div>
+            <button type="button" class="btn btn-success btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
         </div>
+    </div>
+    <form method="GET" action="/process_survey" class="survey-form">
+        <h3 class="question-title"></h3>
+
     </form>
 </div>
 {% endblock %}
