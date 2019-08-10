@@ -13,46 +13,27 @@
     <div class="form-header container-fluid">
         <div class="row">
             <div class="col">
-                If the mandems answers these questions imma predict a fireee song for your headtop using the power of ML fam
+                <h2>If the mandems answers these questions imma predict a fireee song for your headtop using the power of ML fam</h2>
             </div>
             <div class="col">
-                Just bless yourself and answers these questions
+               <h2>Just bless yourself and answers these questions</h2>
             </div>
             <div class="col">
-                5 means mans rates it bare and 0 means get that waste outta here
+               <h2>5 means mans rates it bare and 0 means get that waste outta here</h2>
             </div>
         </div>
     </div>
     <form method="GET" action="/process_survey" class="survey-form">
-        {% for question in questions %}
-            <div class="question">
-                <div class="form-row">
-                    <div class="col">
-                        <h3 class="question-title">{{question.title()}}</h3>
-                    </div>
-                </div>
-                <div class="question-options">
-                    {% if 'Gender' in question %}
-                    <div class="form-check form-check-inline">
-                        <label for="male">Male</label>
-                        <input type="radio" name="{{question}}" id="male" value="1" required>
-                        <label for="female">Female</label>
-                        <input type="radio" name="{{question}}" id="female" value="0" required>
-                    </div>
-                    {% else %}
-                        <div class="form-check form-check-inline">
-                            {% for rank in range(6) %}
-                                <label for={{rank}}>{{rank}}</label>
-                                <input type="radio" name="{{question}}" id={{rank}} value={{rank}} required>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </div>
-                <button type="button" class="btn btn-primary previous-btn">Previous</button>
-                <button type="button" class="btn btn-primary next-btn">Next</button>
-            </div>
-        {% endfor %}
-        <button type="submit" class="btn btn-primary predict-btn">Predict!</button>
+        <h3 class="question-title"></h3>
+        <div class="form-check form-check-inline"></div>
+        <div class="form-row-inline">
+            <button type="button" class="btn btn-primary previous-btn">Previous</button>
+            <button type="button" class="btn btn-primary next-btn">Next</button>
+            <input type="submit" class="btn btn-primary predict-btn">
+        </div>
     </form>
 </div>
 {% endblock %}
+
+<label for={{rank}}>{{rank}}</label>
+<input type="radio" name="{{question}}" id={{rank}} value={{rank}} required>

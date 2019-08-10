@@ -6,6 +6,18 @@ div.question{
     margin-left: 10px;
 }
 
-button.predict-btn{
+h2{
+    font-size: 150%;
+}
+
+.question-input, .question-label{
+    margin: 10px;
+}
+
+.previous-btn{
+    display: none
+}
+
+.predict-btn{
     display: none;
 }

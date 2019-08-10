@@ -52,12 +52,12 @@ def index():
         reader = csv.reader(infile)
         question_correlations = dict((rows[1], rows[0]) for rows in reader)
     questions = [question_correlations[question.capitalize()] for question in questions]
-    questions_and_options = {}
+    questions_and_options = []
     for question in questions:
         if question in CATEGORICAL_QUESTIONS:
-            questions_and_options[question] = CATEGORICAL_QUESTIONS[question]
+            questions_and_options.append([question, CATEGORICAL_QUESTIONS[question]])
         else:
-            questions_and_options[question] = DEFAULT_NUMBER_OF_QUESTION_RESPONSE_OPTIONS
+            questions_and_options.append([question, DEFAULT_NUMBER_OF_QUESTION_RESPONSE_OPTIONS])
 
     return render_template('survey.html', questions=questions_and_options)
 
