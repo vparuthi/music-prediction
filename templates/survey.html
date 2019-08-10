@@ -2,59 +2,57 @@
 
 {% block head %}
 <h1>Music Prediction Survey</h1>
+<script>
+    var questions = {{ questions|tojson }}
+</script>
 <script src="{{url_for('static', filename='js/survey.js')}}" defer></script>
 {% endblock %}
 
 {% block body %}
 <div class="main">
-    <div class="form-header">
-        If the mandems answers these questions imma predict a fireee song for your headtop using the power of ML fam<br>
-        Just bless yourself and answers these questions<br>
-        5 means mans rates it bare and 0 means get that waste outta here</div>
+    <div class="form-header container-fluid">
+        <div class="row">
+            <div class="col">
+                If the mandems answers these questions imma predict a fireee song for your headtop using the power of ML fam
+            </div>
+            <div class="col">
+                Just bless yourself and answers these questions
+            </div>
+            <div class="col">
+                5 means mans rates it bare and 0 means get that waste outta here
+            </div>
+        </div>
+    </div>
     <form method="GET" action="/process_survey" class="survey-form">
-        <div class="container-fluid">
-            {% for question in questions %}
-                <div class="row">
+        {% for question in questions %}
+            <div class="question">
+                <div class="form-row">
                     <div class="col">
                         <h3 class="question-title">{{question.title()}}</h3>
                     </div>
                 </div>
-                <div class="question-options row">
+                <div class="question-options">
                     {% if 'Gender' in question %}
-                        <div class="col">
-                            <fieldset>
-                                <label for="male">Male</label>
-                                <input type="radio" name="{{question}}" id="male" value="1" required>
-                            </fieldset>
-                        </div>
-                        <div class="col">
-                            <fieldset>
-                                <label for="female">Female</label>
-                                <input type="radio" name="{{question}}" id="female" value="0" required>
-                            </fieldset>
-                        </div>
+                    <div class="form-check form-check-inline">
+                        <label for="male">Male</label>
+                        <input type="radio" name="{{question}}" id="male" value="1" required>
+                        <label for="female">Female</label>
+                        <input type="radio" name="{{question}}" id="female" value="0" required>
+                    </div>
                     {% else %}
-                        {% for rank in range(6) %}
-                            <div class="col">
-                                <fieldset>
-                                    <label for={{rank}}>{{rank}}</label>
-                                    <input type="radio" name="{{question}}" id={{rank}} value={{rank}} required>
-                                </fieldset>
-                            </div>
-                        {% endfor %}
+                        <div class="form-check form-check-inline">
+                            {% for rank in range(6) %}
+                                <label for={{rank}}>{{rank}}</label>
+                                <input type="radio" name="{{question}}" id={{rank}} value={{rank}} required>
+                            {% endfor %}
+                        </div>
                     {% endif %}
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <button type="button" class="btn btn-primary">Previous</button>
-                    </div>
-                    <div class="col">
-                        <button type="button" class="btn btn-primary">Next</button>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-        <input type="submit" value="Submit">
+                <button type="button" class="btn btn-primary previous-btn">Previous</button>
+                <button type="button" class="btn btn-primary next-btn">Next</button>
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary predict-btn">Predict!</button>
     </form>
 </div>
 {% endblock %}

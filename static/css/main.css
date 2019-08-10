@@ -5,3 +5,7 @@ body{
 div.question{
     margin-left: 10px;
 }
+
+button.predict-btn{
+    display: none;
+}
