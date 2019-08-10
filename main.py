@@ -15,6 +15,9 @@ OPTIMIZED_MODEL_PARAMETERS_FILE_PATH = './resources/final_model_values.json'
 FINAL_MLKNN_MODEL_FILE_PATH = './model/finalized_MLkNN_model.sav'
 SPOTIFY_SEARCH_API_URL = 'https://api.spotify.com/v1/search?q='
 CONFIG_FILE_PATH = 'config.ini'
+DEFAULT_NUMBER_OF_QUESTION_RESPONSE_OPTIONS = 5
+# value is the question, key is the number of categories
+CATEGORICAL_QUESTIONS = {'Gender': 2}
 app = Flask(__name__)
 
 
@@ -49,7 +52,14 @@ def index():
         reader = csv.reader(infile)
         question_correlations = dict((rows[1], rows[0]) for rows in reader)
     questions = [question_correlations[question.capitalize()] for question in questions]
-    return render_template('survey.html', questions=questions)
+    questions_and_options = {}
+    for question in questions:
+        if question in CATEGORICAL_QUESTIONS:
+            questions_and_options[question] = CATEGORICAL_QUESTIONS[question]
+        else:
+            questions_and_options[question] = DEFAULT_NUMBER_OF_QUESTION_RESPONSE_OPTIONS
+
+    return render_template('survey.html', questions=questions_and_options)
 
 
 def create_new_model():
