@@ -1,11 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:800&display=swap');
+
 body{
-    font-family: sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    background-color: #00a7f6
 }
 div.question{
     margin-left: 10px;
 }
-h2{
+h1, h2{
+    color: white;
     font-size: 150%;
+}
+h3{
+    color: black
 }
 .question-input, .question-label{
     margin: 10px;
@@ -13,41 +21,88 @@ h2{
 .previous-btn{
     visibility: hidden;
 }
-
-submit-btn{
+.submit-btn{
+    background-color: #27ae60;
+    color: #EFEEEE;
+    float: right;
     visibility: hidden;
 }
+.submit-btn:focus{
+    color: #EFEEEE;
+}
+.submit-btn:hover{
+    color: #EFEEEE;
+    background-color: #2ecc71;
+}
+
 .col{
     display: inline;
 }
 .btn-circle.btn-xl {
     width: 70px;
     height: 70px;
-    padding: 10px 16px;
     border-radius: 35px;
     font-size: 24px;
-    line-height: 1.33;
+    line-height: 1;
     margin: 20px;
+    -webkit-box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
 }
-
-.btn-circle {
-    width: 30px;
-    height: 30px;
-    padding: 6px 0px;
-    border-radius: 15px;
-    text-align: center;
-    font-size: 12px;
-    line-height: 1.42857;
-}
-.btn-circle:focus{
+.btn:focus{
     outline:0 !important;
 }
-
-.response-btn:focus {
-    background-color: black;
+.response-btn:focus{
+    color: #F26627;
 }
-
+.response-btn{
+    background-color: #9bd7d1;
+    color: #325d79
+}
+.response-btn:hover{
+    color: #F26627;
+}
 .btn-selected{
-    background-color: black;
+    background-color: #325d79;
+    color: #F26627;
+}
+.form {
+    width: 665px;
+    position: relative;
+    margin: 0 auto;
+    background: #fafafa;
+    border-radius: 60px;
+    -webkit-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
+}
+.nav-btn{
+    background-color: #F26627;
+    color: #EFEEEE;
+}
+.nav-btn:hover{
+    background-color: #F9A26C;
+    color: #EFEEEE;
+}
+.nav-btn:focus{
+    color: #EFEEEE;
+}
+.question-title{
+    text-align: center;
+    padding-top: 10px;
+}
+h1{
+    text-align: center;
+    font-size: 300%;
+}
+.error-text{
+    color: #F18C8E;
+    font-size: 110%;
+    display: inline;
+    visibility: hidden;
+}
+.progress{
+  width: 70px;
+  height: 70px;
 }
 

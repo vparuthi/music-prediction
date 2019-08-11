@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<h1>Music Prediction Survey</h1>
+<h1>Bored of The Same Music?</h1>
+
 <script>
     var questions = {{ questions|tojson }}
 </script>
@@ -28,20 +29,21 @@
         <div class="form-check form-check-inline"></div>
         <div class="form-row-inline">
             <div class="col">
-                <button type="button" class="btn btn-info btn-circle btn-xl previous-btn"><i class="fas fa-arrow-left"></i></button>
+                <button type="button" class="btn btn-circle btn-xl previous-btn nav-btn"><i class="fas fa-arrow-left"></i></button>
             </div>
             <div class="col">
-                <button type="button" class="btn btn-info btn-circle btn-xl next-btn"><i class="fas fa-arrow-right"></i></button>
+                <button type="button" class="btn btn-circle btn-xl next-btn nav-btn"><i class="fas fa-arrow-right"></i></button>
             </div>
-            <button type="button" class="btn btn-success btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
+            <div class="col">
+                <h5 class="error-text">Please select an option</h5>
+            </div>
+            <div class="col progress" id="container">
+
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
+            </div>
         </div>
     </div>
-    <form method="GET" action="/process_survey" class="survey-form">
-        <h3 class="question-title"></h3>
-
-    </form>
 </div>
 {% endblock %}
-
-<label for={{rank}}>{{rank}}</label>
-<input type="radio" name="{{question}}" id={{rank}} value={{rank}} required>

@@ -16,20 +16,20 @@ $(document).ready(function(){
         $('.response-btn').removeClass('btn-selected')
         $(this).addClass('btn-selected')
         responseValues[currentQuestionIndex] = $(this).val()
-        console.log(responseValues)
+        $('.error-text').css('visibility', 'hidden')
     })
 
     $(nextButton).click(function(){
-        console.log(currentQuestionIndex)
         if (checkIfSelected(formButtonsDiv, responseValues, currentQuestionIndex)){
             currentQuestionIndex++;
             if (currentQuestionIndex + 1 == questions.length){
                 $(this).css('visibility', 'hidden')
+                $(submitButton).css('visibility', 'visible')
             }
             currentQuestion = questions[currentQuestionIndex]
             updateForm(questionTitle, currentQuestion, responseValues, currentQuestionIndex)
+            $('.previous-btn').css('visibility', 'visible')
         }
-        $('.previous-btn').css('visibility', 'visible')
     });
 
     previousButton.click(function(){
@@ -47,7 +47,7 @@ function checkIfSelected(formButtonsDiv, responseValues, currentQuestionIndex){
     if (typeof responseValues[currentQuestionIndex] != 'undefined'){
         return true
     }
-    $(formButtonsDiv).effect("shake")
+    $('.error-text').css('visibility', 'visible').effect("shake", {distance: 5})
     return false
 }
 
@@ -56,7 +56,7 @@ function populateForm(formButtonsDiv, currentQuestion, questionTitle){
         $('<button/>', {
             value: option,
             text: option.toString(),
-            class: 'btn btn-info btn-circle btn-xl response-btn',
+            class: 'btn btn-circle btn-xl response-btn',
             id: option
         }).appendTo(formButtonsDiv);
     }
@@ -74,5 +74,11 @@ function reselectResponse(responseValues, currentQuestionIndex){
 function updateForm(questionTitle, currentQuestion, responseValues, currentQuestionIndex){
     questionTitle.text(currentQuestion[0])
     $('.response-btn').removeClass('btn-selected')
+    if (currentQuestion[1].length != 6){
+        $('.response-btn').css('visibility', 'hidden')
+        for(option in currentQuestion[1]){
+            $(".response-btn[value='"+option.toString()+"']").css('visibility', 'visible')
+        }
+    }
     reselectResponse(responseValues, currentQuestionIndex)
 }
