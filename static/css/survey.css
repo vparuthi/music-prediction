@@ -3,7 +3,8 @@
 body{
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    background-color: #00a7f6
+    background-color: #00a7f6;
+    color: #fafafa;
 }
 div.question{
     margin-left: 10px;
@@ -11,6 +12,7 @@ div.question{
 h1, h2{
     color: white;
     font-size: 150%;
+    margin: 10px 10px;
 }
 h3{
     color: black
@@ -25,6 +27,7 @@ h3{
     background-color: #27ae60;
     color: #EFEEEE;
     float: right;
+    display: inline;
     visibility: hidden;
 }
 .submit-btn:focus{
@@ -68,10 +71,12 @@ h3{
 }
 .form {
     width: 665px;
+    height: 260px !important;
     position: relative;
     margin: 0 auto;
     background: #fafafa;
     border-radius: 60px;
+    height: 286px;
     -webkit-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
@@ -101,8 +106,11 @@ h1{
     display: inline;
     visibility: hidden;
 }
-.progress{
+form{
+    display: inline;
+}
+#container {
+  margin: 20px;
   width: 70px;
   height: 70px;
 }
-

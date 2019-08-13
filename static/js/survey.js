@@ -1,84 +1,83 @@
-$(document).ready(function(){
-//    questions is a 2D array, where col_1 = question text and col_2 = number of response options
-    var currentQuestionIndex = 0
-    var form = $('.form')
-    var questionTitle = form.find('h3')
-    var formButtonsDiv = form.find('div.form-check-inline')
-    var currentQuestion = questions[currentQuestionIndex]
-    var responseValues = {}
-    var submitButton = $('.submit-btn')
-    var nextButton = $('.next-btn')
-    var previousButton = $('.previous-btn')
+define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], function(domReady, $, ui, formMethods, progressBar){
+    domReady(function(){
+    //    questions is a 2D array, where col_1 = question text and col_2 = number of response options
+        var currentQuestionIndex = 0;
+        var form = $('.form');
+        var questionTitle = form.find('h3');
+        var formButtonsDiv = form.find('div.form-check-inline');
+        var currentQuestion = questions[currentQuestionIndex];
+        var responseValues = {};
+        var submitButton = $('.submit-btn');
+        var nextButton = $('.next-btn');
+        var previousButton = $('.previous-btn');
+        var errorText = $('.error-text');
+        var bar = new progressBar.Circle(container, {
+          color: '#FFEA82',
+          trailColor: '#eee',
+          trailWidth: 1,
+          duration: 1400,
+          easing: 'bounce',
+          strokeWidth: 6,
+          from: {color: '#FFEA82', a:0},
+          to: {color: '#ED6A5A', a:1},
+          // Set default step function for all animate calls
+          step: function(state, circle) {
+            circle.path.setAttribute('stroke', state.color);
+            var value = Math.round(circle.value() * 100);
+            if (value === 0) {
+              circle.setText('');
+            } else {
+              circle.setText(value);
+            }
+          }
+        });
+        bar.text.style.fontFamily = 'Raleway, Helvetica, sans-serif';
+        bar.text.style.fontSize = '2rem';
 
-    populateForm(formButtonsDiv, currentQuestion, questionTitle)
+        formMethods.populateForm(formButtonsDiv, currentQuestion, questionTitle)
 
-    $('.response-btn').click(function(){
-        $('.response-btn').removeClass('btn-selected')
-        $(this).addClass('btn-selected')
-        responseValues[currentQuestionIndex] = $(this).val()
-        $('.error-text').css('visibility', 'hidden')
-    })
+        $('.response-btn').click(function(){
+            $('.response-btn').removeClass('btn-selected')
+            $(this).addClass('btn-selected')
+            responseValues[currentQuestionIndex] = $(this).val()
+            $('.error-text').css('visibility', 'hidden')
+        })
 
-    $(nextButton).click(function(){
-        if (checkIfSelected(formButtonsDiv, responseValues, currentQuestionIndex)){
-            currentQuestionIndex++;
-            if (currentQuestionIndex + 1 == questions.length){
+        $(nextButton).click(function(){
+            if (formMethods.isResponseSelected(formButtonsDiv, responseValues, currentQuestionIndex, errorText)){
+                currentQuestionIndex++;
+                if (currentQuestionIndex + 1 == questions.length){
+                    $(this).css('visibility', 'hidden')
+                    $(submitButton).css('visibility', 'visible')
+                }
+                currentQuestion = questions[currentQuestionIndex]
+                formMethods.updateForm(questionTitle, currentQuestion, responseValues, currentQuestionIndex)
+                $('.previous-btn').css('visibility', 'visible')
+                bar.animate(currentQuestionIndex/questions.length);
+            }
+        });
+
+        $(previousButton).click(function(){
+            currentQuestionIndex--
+            if (currentQuestionIndex == 0){
                 $(this).css('visibility', 'hidden')
-                $(submitButton).css('visibility', 'visible')
             }
             currentQuestion = questions[currentQuestionIndex]
-            updateForm(questionTitle, currentQuestion, responseValues, currentQuestionIndex)
-            $('.previous-btn').css('visibility', 'visible')
-        }
-    });
+            formMethods.updateForm(questionTitle, currentQuestion, responseValues, currentQuestionIndex)
+            $('.next-btn').css('visibility', 'visible')
+            bar.animate(currentQuestionIndex/questions.length);
+        });
 
-    previousButton.click(function(){
-        currentQuestionIndex--
-        if (currentQuestionIndex == 0){
-            $(this).css('visibility', 'hidden')
-        }
-        currentQuestion = questions[currentQuestionIndex]
-        updateForm(questionTitle, currentQuestion, responseValues, currentQuestionIndex)
-        $('.next-btn').css('visibility', 'visible')
+        $(submitButton).click(function(){
+            $.ajax({
+                type : "POST",
+                url : '/process_survey',
+                dataType: "json",
+                data: JSON.stringify(responseValues),
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        });
     });
 });
-
-function checkIfSelected(formButtonsDiv, responseValues, currentQuestionIndex){
-    if (typeof responseValues[currentQuestionIndex] != 'undefined'){
-        return true
-    }
-    $('.error-text').css('visibility', 'visible').effect("shake", {distance: 5})
-    return false
-}
-
-function populateForm(formButtonsDiv, currentQuestion, questionTitle){
-    for (option in currentQuestion[1]){
-        $('<button/>', {
-            value: option,
-            text: option.toString(),
-            class: 'btn btn-circle btn-xl response-btn',
-            id: option
-        }).appendTo(formButtonsDiv);
-    }
-    questionTitle.text(currentQuestion[0])
-}
-
-function reselectResponse(responseValues, currentQuestionIndex){
-    if (typeof responseValues[currentQuestionIndex] != 'undefined'){
-        responseSelected = responseValues[currentQuestionIndex]
-        $("button[value='"+responseSelected.toString()+"']").addClass('btn-selected')
-    }
-    return
-}
-
-function updateForm(questionTitle, currentQuestion, responseValues, currentQuestionIndex){
-    questionTitle.text(currentQuestion[0])
-    $('.response-btn').removeClass('btn-selected')
-    if (currentQuestion[1].length != 6){
-        $('.response-btn').css('visibility', 'hidden')
-        for(option in currentQuestion[1]){
-            $(".response-btn[value='"+option.toString()+"']").css('visibility', 'visible')
-        }
-    }
-    reselectResponse(responseValues, currentQuestionIndex)
-}

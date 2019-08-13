@@ -17,13 +17,13 @@ SPOTIFY_SEARCH_API_URL = 'https://api.spotify.com/v1/search?q='
 CONFIG_FILE_PATH = 'config.ini'
 DEFAULT_NUMBER_OF_QUESTION_RESPONSE_OPTIONS = 5
 # value is the question, key is the number of categories
-CATEGORICAL_QUESTIONS = {'Gender': ['Male', 'Female']}
+CATEGORICAL_QUESTIONS = {'Gender': ['M', 'F']}
 app = Flask(__name__)
 
 
-@app.route('/process_survey', methods=['GET'])
+@app.route('/process_survey', methods=['POST'])
 def process():
-    form_values = request.args
+    form_values = json.loads(list(request.form.keys())[0])
     predicted_values = model.mlknn.predict(current_app.model, list(form_values.values()))
     genres = list(compress(current_app.genres, predicted_values))
 

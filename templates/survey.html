@@ -6,7 +6,6 @@
 <script>
     var questions = {{ questions|tojson }}
 </script>
-<script src="{{url_for('static', filename='js/survey.js')}}" defer></script>
 {% endblock %}
 
 {% block body %}
@@ -37,11 +36,12 @@
             <div class="col">
                 <h5 class="error-text">Please select an option</h5>
             </div>
-            <div class="col progress" id="container">
-
+            <div id="container">
             </div>
             <div class="col">
-                <button type="button" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
+                <form action="/process_survey" method="post">
+                    <button type="button" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
+                </form>
             </div>
         </div>
     </div>
