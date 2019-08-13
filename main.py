@@ -23,8 +23,9 @@ app = Flask(__name__)
 
 @app.route('/process_survey', methods=['POST'])
 def process():
-    form_values = json.loads(list(request.form.keys())[0])
-    predicted_values = model.mlknn.predict(current_app.model, list(form_values.values()))
+    form_values = [int(value) for value in json.loads(list(request.form.keys())[0]).values()]
+    form_values = [1]*10
+    predicted_values = model.mlknn.predict(current_app.model, form_values)
     genres = list(compress(current_app.genres, predicted_values))
 
     config = configparser.ConfigParser()
@@ -35,7 +36,7 @@ def process():
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     spotify_api_results = {}
     for genre in genres:
-        spotify_api_results = {genre: sp.search(q=genre, type='playlist', limit=6)}
+        spotify_api_results[genre] = sp.search(q=genre, type='playlist', limit=6)
 
     return render_template('results.html', genres=spotify_api_results)
 

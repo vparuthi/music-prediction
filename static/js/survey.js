@@ -12,14 +12,13 @@ define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], functio
         var previousButton = $('.previous-btn');
         var errorText = $('.error-text');
         var bar = new progressBar.Circle(container, {
-          color: '#FFEA82',
           trailColor: '#eee',
           trailWidth: 1,
           duration: 1400,
           easing: 'bounce',
           strokeWidth: 6,
-          from: {color: '#FFEA82', a:0},
-          to: {color: '#ED6A5A', a:1},
+          from: {color: '#EF3D59', a:0},
+          to: {color: '#2ecc71', a:1},
           // Set default step function for all animate calls
           step: function(state, circle) {
             circle.path.setAttribute('stroke', state.color);
@@ -31,8 +30,9 @@ define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], functio
             }
           }
         });
-        bar.text.style.fontFamily = 'Raleway, Helvetica, sans-serif';
+        bar.text.style.fontFamily = 'Montserrat';
         bar.text.style.fontSize = '2rem';
+        bar.animate((currentQuestionIndex+1)/questions.length);
 
         formMethods.populateForm(formButtonsDiv, currentQuestion, questionTitle)
 
@@ -53,7 +53,7 @@ define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], functio
                 currentQuestion = questions[currentQuestionIndex]
                 formMethods.updateForm(questionTitle, currentQuestion, responseValues, currentQuestionIndex)
                 $('.previous-btn').css('visibility', 'visible')
-                bar.animate(currentQuestionIndex/questions.length);
+                bar.animate((currentQuestionIndex+1)/questions.length);
             }
         });
 
@@ -65,7 +65,7 @@ define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], functio
             currentQuestion = questions[currentQuestionIndex]
             formMethods.updateForm(questionTitle, currentQuestion, responseValues, currentQuestionIndex)
             $('.next-btn').css('visibility', 'visible')
-            bar.animate(currentQuestionIndex/questions.length);
+            bar.animate((currentQuestionIndex+1)/questions.length);
         });
 
         $(submitButton).click(function(){

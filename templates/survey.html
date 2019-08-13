@@ -26,23 +26,14 @@
     <div class="form">
         <h3 class="question-title"></h3>
         <div class="form-check form-check-inline"></div>
-        <div class="form-row-inline">
-            <div class="col">
-                <button type="button" class="btn btn-circle btn-xl previous-btn nav-btn"><i class="fas fa-arrow-left"></i></button>
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-circle btn-xl next-btn nav-btn"><i class="fas fa-arrow-right"></i></button>
-            </div>
-            <div class="col">
-                <h5 class="error-text">Please select an option</h5>
-            </div>
-            <div id="container">
-            </div>
-            <div class="col">
-                <form action="/process_survey" method="post">
-                    <button type="button" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
-                </form>
-            </div>
+        <div class="form-buttons">
+            <button type="button" class="btn btn-circle btn-xl previous-btn nav-btn"><i class="fas fa-arrow-left"></i></button>
+            <button type="button" class="btn btn-circle btn-xl next-btn nav-btn"><i class="fas fa-arrow-right"></i></button>
+            <h5 class="error-text">Please select an option</h5>
+            <div id="container"></div>
+            <form action="/process_survey" method="post">
+                <button type="button" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
+            </form>
         </div>
     </div>
 </div>

@@ -2,6 +2,7 @@ define(['jquery'], function(){
 var formMethods = {};
 
 formMethods.isResponseSelected = function(formButtonsDiv, responseValues, currentQuestionIndex, errorText){
+    return true
     if (typeof responseValues[currentQuestionIndex] != 'undefined'){
         return true
     }
