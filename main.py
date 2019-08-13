@@ -2,7 +2,7 @@ import preprocessing
 import model.mlknn
 import json
 import pickle
-from flask import Flask, render_template, url_for, request, current_app
+from flask import Flask, render_template, url_for, request, current_app, redirect, jsonify
 import csv
 from itertools import compress
 import requests
@@ -22,8 +22,8 @@ app = Flask(__name__)
 
 
 @app.route('/process_survey', methods=['POST'])
-def process():
-    form_values = [int(value) for value in json.loads(list(request.form.keys())[0]).values()]
+def process_survey():
+    form_values = list(map(int, json.loads(request.form['responseValues']).values()))
     form_values = [1]*10
     predicted_values = model.mlknn.predict(current_app.model, form_values)
     genres = list(compress(current_app.genres, predicted_values))
@@ -37,7 +37,6 @@ def process():
     spotify_api_results = {}
     for genre in genres:
         spotify_api_results[genre] = sp.search(q=genre, type='playlist', limit=6)
-
     return render_template('results.html', genres=spotify_api_results)
 
 

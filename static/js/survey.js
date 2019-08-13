@@ -40,6 +40,7 @@ define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], functio
             $('.response-btn').removeClass('btn-selected')
             $(this).addClass('btn-selected')
             responseValues[currentQuestionIndex] = $(this).val()
+            $('.input-text').val(JSON.stringify(responseValues))
             $('.error-text').css('visibility', 'hidden')
         })
 
@@ -69,15 +70,7 @@ define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], functio
         });
 
         $(submitButton).click(function(){
-            $.ajax({
-                type : "POST",
-                url : '/process_survey',
-                dataType: "json",
-                data: JSON.stringify(responseValues),
-                success: function (data) {
-                    console.log(data);
-                }
-            });
+            $('.input-text').val(JSON.stringify(responseValues))
         });
     });
 });

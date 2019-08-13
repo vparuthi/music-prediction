@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block head %}
+<link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='css/survey.css')}}">
 <h1>Bored of The Same Music?</h1>
 
 <script>
@@ -31,8 +32,9 @@
             <button type="button" class="btn btn-circle btn-xl next-btn nav-btn"><i class="fas fa-arrow-right"></i></button>
             <h5 class="error-text">Please select an option</h5>
             <div id="container"></div>
-            <form action="/process_survey" method="post">
-                <button type="button" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
+            <form action="{{ url_for('process_survey') }}" method="post" class="form">
+                <input type="text" name="responseValues" class="input-text">
+                <button type="submit" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
             </form>
         </div>
     </div>
