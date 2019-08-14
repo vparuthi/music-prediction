@@ -5,7 +5,8 @@ requirejs.config({
         jqueryUI: 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min',
         domReady: '../vendor/domReady',
         formMethods: 'formMethods',
-        progressBar: '../vendor/progressbar.min'
+        progressBar: '../vendor/progressbar.min',
+        fontAwesome: "https://kit.fontawesome.com/a040392244"
      },
      shim:{
         jqueryUI:{
