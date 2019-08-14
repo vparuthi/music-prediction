@@ -1,20 +1,30 @@
-import pandas as pd
 import numpy as np
 from skmultilearn.adapt import MLkNN
+import preprocessing
+import json
+import pickle
+
+OPTIMIZED_MODEL_PARAMETERS_FILE_PATH = './resources/final_model_values.json'
+FINAL_MLKNN_MODEL_FILE_PATH = './model/finalized_MLkNN_model.sav'
 
 
-def create_model(question_data, music_data, k, s):
+def create_model(file_path=FINAL_MLKNN_MODEL_FILE_PATH):
     """
-    Creates and trains a MLkNN classifier
+    Creates and trains a MLkNN classifier using the optimized parameters found
+    Saves this trained model to disk
 
-    :param DataFrame question_data: X data
-    :param DataFrame music_data: y data
-    :param int k: it is a MLkNN hyperparameter that represents number of neighbours compared to
-    :param int s: it is a MLkNN hyperparameter known as the smoothing factor
+    :param string file_path: specifies where the model should be saved
     :return: a trained sklearn MLkNN classifier
     """
-    clf = MLkNN(k=k, s=s)
+
+    with open(OPTIMIZED_MODEL_PARAMETERS_FILE_PATH) as file:
+        hyperparameters = json.load(file)['hyperparameters']
+
+    question_data, music_data = preprocessing.load_data()
+    question_data, music_data = preprocessing.preprocess_data(question_data, music_data)
+    clf = MLkNN(k=hyperparameters['k'], s=hyperparameters['s'])
     clf.fit(question_data.values, music_data.values)
+    pickle.dump(clf, open(file_path, 'wb'))
     return clf
 
 
@@ -29,3 +39,13 @@ def predict(clf, question_answers):
 
     # clf.predict() returns a sparse matrix and toarray() is utilized to convert it to a list
     return list(clf.predict(np.asarray([question_answers])).toarray()[0])
+
+
+def load_model(file_path=FINAL_MLKNN_MODEL_FILE_PATH):
+    """
+    Loads the model from disk
+
+    :param string file_path: specifies where to load a trained model from
+    :return:
+    """
+    return pickle.load(open(file_path, 'rb'))

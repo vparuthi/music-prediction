@@ -11,12 +11,17 @@ body{
     -moz-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
 }
-h1, h2{
-    text-align: center;
+h2{
+    text-align: justify;
+    text-shadow: 1px 1px #616161;
 }
 h1{
+    text-align: center;
     font-size: 200%;
     margin: 50px;
+}
+#header{
+    font-size: 180%;
 }
 .animation{
     visibility: hidden;

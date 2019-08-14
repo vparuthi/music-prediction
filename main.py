@@ -1,18 +1,13 @@
-import preprocessing
-import model.mlknn
+import model.mlknn as model
 import json
-import pickle
 from flask import Flask, render_template, url_for, request, current_app, redirect, jsonify
 import csv
 from itertools import compress
-import requests
-import base64
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import configparser
 
 OPTIMIZED_MODEL_PARAMETERS_FILE_PATH = './resources/final_model_values.json'
-FINAL_MLKNN_MODEL_FILE_PATH = './model/finalized_MLkNN_model.sav'
 SPOTIFY_SEARCH_API_URL = 'https://api.spotify.com/v1/search?q='
 CONFIG_FILE_PATH = 'config.ini'
 DEFAULT_NUMBER_OF_QUESTION_RESPONSE_OPTIONS = 5
@@ -24,7 +19,7 @@ app = Flask(__name__)
 @app.route('/process_survey', methods=['POST'])
 def process_survey():
     form_values = list(map(int, json.loads(request.form['responseValues']).values()))
-    predicted_values = model.mlknn.predict(current_app.model, form_values)
+    predicted_values = model.predict(current_app.model, form_values)
     genres = list(compress(current_app.genres, predicted_values))
     config = configparser.ConfigParser()
     config.read(CONFIG_FILE_PATH)
@@ -68,10 +63,10 @@ def index():
 
 
 def main():
-    mlknn_clf = pickle.load(open(FINAL_MLKNN_MODEL_FILE_PATH, 'rb'))
+    clf = model.load_model()
     with open(OPTIMIZED_MODEL_PARAMETERS_FILE_PATH) as file:
         genres = json.load(file)['genres']
-    app.model = mlknn_clf
+    app.model = clf
     app.genres = genres
     app.run(debug=True)
 

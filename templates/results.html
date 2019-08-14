@@ -10,7 +10,29 @@
 {% endblock %}
 
 {% block body %}
-<h1 class="animation">Here are your results fam. dont even lie you kno they bare accurate<br> These playlists slap so click them and get ready to vibe</h1>
+<div class="form-header container">
+    <div class="row animation">
+        <div class="col">
+            <h1 id="header">
+                Here are your results fam<br>
+                These playlists slap so click them and get ready to vibe
+            </h1>
+        </div>
+    </div>
+    <div class="row animation">
+        <div class="col">
+           <h2> The model predicts you like: <br>
+                {% for genre, playlists in genres.items() %}
+                    {{ genre.title() }}<br>
+                {% endfor %}
+           </h2>
+        </div>
+        <div class="col">
+           <h2>All possible genres it could've predicted:<br>
+               Classical<br>Music pop<br>Metal <br>Hiphop and Rap <br>Latino <br> Alternative</h2>
+        </div>
+    </div>
+</div>
     {% for genre, playlists in genres.items() %}
         <div class="genre">
             <div class="container">

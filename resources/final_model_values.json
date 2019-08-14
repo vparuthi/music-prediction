@@ -11,14 +11,14 @@
         "rats",
         "gender"
     ],
-    "hyperparamters": {
+    "hyperparameters": {
         "k": 4,
         "s": 0.5
     },
     "genres": [
         "classical music",
         "pop",
-        "metal or hardrock",
+        "metal",
         "hiphop and rap",
         "latino",
         "alternative"
