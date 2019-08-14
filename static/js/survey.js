@@ -11,6 +11,7 @@ define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], functio
         var nextButton = $('.next-btn');
         var previousButton = $('.previous-btn');
         var errorText = $('.error-text');
+
         var bar = new progressBar.Circle(container, {
           trailColor: '#eee',
           trailWidth: 1,
