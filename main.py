@@ -16,7 +16,7 @@ FINAL_MLKNN_MODEL_FILE_PATH = './model/finalized_MLkNN_model.sav'
 SPOTIFY_SEARCH_API_URL = 'https://api.spotify.com/v1/search?q='
 CONFIG_FILE_PATH = 'config.ini'
 DEFAULT_NUMBER_OF_QUESTION_RESPONSE_OPTIONS = 5
-# value is the question, key is the number of categories
+# CATEGORICAL_QUESTIONS is a dict where value is the question, key is the number of categories
 CATEGORICAL_QUESTIONS = {'Gender': ['M', 'F']}
 app = Flask(__name__)
 
@@ -24,10 +24,8 @@ app = Flask(__name__)
 @app.route('/process_survey', methods=['POST'])
 def process_survey():
     form_values = list(map(int, json.loads(request.form['responseValues']).values()))
-    form_values = [1]*10
     predicted_values = model.mlknn.predict(current_app.model, form_values)
     genres = list(compress(current_app.genres, predicted_values))
-    genres = ['Hip hop', 'classical']
     config = configparser.ConfigParser()
     config.read(CONFIG_FILE_PATH)
     spotify_api_keys = config['spotify api']
@@ -38,12 +36,12 @@ def process_survey():
     for genre in genres:
         genre_top_six = []
         playlists = sp.search(q=genre, type='playlist', limit=20).get('playlists').get('items')
-        index = 0
+        playlist_index = 0
         while len(genre_top_six) < 6:
-            if index < len(playlists):
-                if playlists[index].get('owner').get('display_name') == 'Spotify':
-                    genre_top_six.append(playlists[index])
-                index += 1
+            if playlist_index < len(playlists):
+                if playlists[playlist_index].get('owner').get('display_name') == 'Spotify':
+                    genre_top_six.append(playlists[playlist_index])
+                playlist_index += 1
             else:
                 break
         spotify_api_results[genre] = genre_top_six
@@ -69,18 +67,6 @@ def index():
     return render_template('survey.html', questions=questions_and_options)
 
 
-def create_new_model():
-    with open(OPTIMIZED_MODEL_PARAMETERS_FILE_PATH) as file:
-        hyperparameters = json.load(file)['hyperparamters']
-
-    question_data, music_data = preprocessing.load_data()
-    question_data, music_data = preprocessing.preprocess_data(question_data, music_data)
-    clf = model.mlknn.create_model(question_data, music_data, hyperparameters['k'], hyperparameters['s'])
-    # save the model to disk
-    filename = FINAL_MLKNN_MODEL_FILE_PATH
-    pickle.dump(clf, open(filename, 'wb'))
-
-
 def main():
     mlknn_clf = pickle.load(open(FINAL_MLKNN_MODEL_FILE_PATH, 'rb'))
     with open(OPTIMIZED_MODEL_PARAMETERS_FILE_PATH) as file:
@@ -88,6 +74,7 @@ def main():
     app.model = mlknn_clf
     app.genres = genres
     app.run(debug=True)
+
 
 if __name__ == '__main__':
     main()
