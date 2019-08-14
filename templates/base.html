@@ -6,12 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script data-main="{{url_for('static', filename='js/config.js')}}" src="{{url_for('static', filename='vendor/require.js')}}"></script>
-    <script>
-        require(['config'], function(){
-            require(['survey']);
-        });
-    </script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="{{url_for('static', filename='vendor/font_awesome/css/all.css')}}" rel="stylesheet">
     <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='css/base.css')}}">
     {% block head %}{% endblock %}

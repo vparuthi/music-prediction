@@ -31,7 +31,7 @@ define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], functio
           }
         });
         bar.text.style.fontFamily = 'Montserrat';
-        bar.text.style.fontSize = '2rem';
+        bar.text.style.fontSize = '1rem';
         bar.animate((currentQuestionIndex+1)/questions.length);
 
         formMethods.populateForm(formButtonsDiv, currentQuestion, questionTitle)

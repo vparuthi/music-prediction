@@ -3,9 +3,12 @@
 {% block head %}
 <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='css/survey.css')}}">
 <h1>Bored of The Same Music?</h1>
-
 <script>
     var questions = {{ questions|tojson }}
+
+    require(['config'], function(){
+        require(['survey']);
+    });
 </script>
 {% endblock %}
 

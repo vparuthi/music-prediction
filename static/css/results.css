@@ -1,3 +1,33 @@
+body{
+    background-color: #9BD7D1;
+}
 .playlist-image{
+    width: inherit;
+}
+.playlist{
     width: 300px;
+    margin: 20px 10px;
+    -webkit-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
+}
+h1, h2{
+    text-align: center;
+}
+h1{
+    font-size: 200%;
+    margin: 50px;
+}
+.animation{
+    visibility: hidden;
+}
+.col{
+  justify-items: center;
+  align-items: center;
+}
+img{
+    transition: all .5s cubic-bezier(0.42, 0, 0.06, 2.03);
+}
+img:hover{
+    transform: scale(1.1);
 }

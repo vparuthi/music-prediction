@@ -27,7 +27,7 @@ def process_survey():
     form_values = [1]*10
     predicted_values = model.mlknn.predict(current_app.model, form_values)
     genres = list(compress(current_app.genres, predicted_values))
-
+    genres = ['Hip hop', 'classical']
     config = configparser.ConfigParser()
     config.read(CONFIG_FILE_PATH)
     spotify_api_keys = config['spotify api']
@@ -36,7 +36,18 @@ def process_survey():
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     spotify_api_results = {}
     for genre in genres:
-        spotify_api_results[genre] = sp.search(q=genre, type='playlist', limit=6)
+        genre_top_six = []
+        playlists = sp.search(q=genre, type='playlist', limit=20).get('playlists').get('items')
+        index = 0
+        while len(genre_top_six) < 6:
+            if index < len(playlists):
+                if playlists[index].get('owner').get('display_name') == 'Spotify':
+                    genre_top_six.append(playlists[index])
+                index += 1
+            else:
+                break
+        spotify_api_results[genre] = genre_top_six
+
     return render_template('results.html', genres=spotify_api_results)
 
 

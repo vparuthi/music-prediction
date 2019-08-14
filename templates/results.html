@@ -1,25 +1,32 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='css/result.css')}}">
-<h2>Your results fam. dont even lie you kno they bare accurate. these playlists slap so click them and git ready to vibe</h2>
+<link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='css/results.css')}}">
+<script>
+    require(['config'], function(){
+        require(['results']);
+    });
+</script>
 {% endblock %}
 
 {% block body %}
+<h1 class="animation">Here are your results fam. dont even lie you kno they bare accurate<br> These playlists slap so click them and get ready to vibe</h1>
     {% for genre, playlists in genres.items() %}
         <div class="genre">
-            <div class="continer">
-                <div class="row">
+            <div class="container">
+                <div class="row animation">
                     <div class="col">
-                        <h2 class="genre-title">{{genre.title()}}</h2>
+                        <h1 class="genre-title">{{genre.title()}}</h1>
                     </div>
                 </div>
-                <div class="row">
-                    {% for playlist in playlists.get('playlists').get('items') %}
+                <div class="row animation">
+                    {% for playlist in playlists %}
                         {% if playlist.get('images') %}
                             <div class="col">
                                 <a href={{playlist.get('external_urls').get('spotify')}}>
-                                    <img src={{playlist.get('images')[0].get('url')}} class="playlist-image">
+                                    <div class="playlist">
+                                        <img src={{playlist.get('images')[0].get('url')}} class="playlist-image">
+                                    </div>
                                 </a>
                             </div>
                         {% endif %}
