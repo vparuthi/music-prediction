@@ -68,7 +68,7 @@ def main():
         genres = json.load(file)['genres']
     app.model = clf
     app.genres = genres
-    app.run(debug=True)
+    app.run()
 
 
 if __name__ == '__main__':
