@@ -1,4 +1,4 @@
-import model.mlknn as model
+from model import mlknn as model
 import os
 import json
 from flask import Flask, render_template, url_for, request, current_app, redirect, jsonify
