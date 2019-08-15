@@ -1,4 +1,5 @@
 import model.mlknn as model
+import os
 import json
 from flask import Flask, render_template, url_for, request, current_app, redirect, jsonify
 import csv
@@ -68,7 +69,7 @@ def main():
         genres = json.load(file)['genres']
     app.model = clf
     app.genres = genres
-    app.run()
+    app.run(port=int(os.environ.get('PORT', 8080)))
 
 
 if __name__ == '__main__':
