@@ -35,7 +35,7 @@ def preprocess_data(question_data, music_data):
     :return: tuple(DataFrame, DataFrame)
     """
     # gender is binary so we convert that prior to OHE (One Hot Encoding)
-    question_data.loc[:, ['gender']] = question_data[['gender']].applymap(lambda gender: 0 if gender == 'female' else 1)
+    question_data.loc[:, ['gender']] = question_data[['gender']].applymap(lambda gender: 1 if gender == 'female' else 0)
     question_data = pd.get_dummies(question_data, drop_first=True).astype(int)
 
     music_data = music_data.applymap(lambda x: True if x >= THRESHOLD_TO_LIKE_A_GENRE else False)
