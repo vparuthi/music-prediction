@@ -4,15 +4,15 @@
         "shopping centres",
         "spending on looks",
         "musical instruments",
-        "art exhibitions",
-        "celebrities",
+        "shopping",
+        "cars",
         "reading",
         "comedy",
         "rats",
         "gender"
     ],
     "hyperparameters": {
-        "k": 2,
+        "k": 4,
         "s": 0.5
     },
     "genres": [
