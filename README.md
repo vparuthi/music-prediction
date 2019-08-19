@@ -1,6 +1,7 @@
 # music-predictor
 
-A Flask web application that uses an mlknn model to predict a user's favorite genre of music.
+A Flask web application that uses an mlknn model to predict a user's favorite genre of music
+[Active App Link](http://35.203.81.177:8080/)
 
 ## Installation
 
