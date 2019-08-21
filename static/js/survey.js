@@ -43,6 +43,9 @@ define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], functio
             responseValues[currentQuestionIndex] = $(this).val()
             $('.input-text').val(JSON.stringify(responseValues))
             $('.error-text').css('visibility', 'hidden')
+            if(currentQuestionIndex + 1 == questions.length){
+                $(submitButton).css('visibility', 'visible')
+            }
         })
 
         $(nextButton).click(function(){
@@ -50,7 +53,6 @@ define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], functio
                 currentQuestionIndex++;
                 if (currentQuestionIndex + 1 == questions.length){
                     $(this).css('visibility', 'hidden')
-                    $(submitButton).css('visibility', 'visible')
                 }
                 currentQuestion = questions[currentQuestionIndex]
                 formMethods.updateForm(questionTitle, currentQuestion, responseValues, currentQuestionIndex)
@@ -71,7 +73,9 @@ define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], functio
         });
 
         $(submitButton).click(function(){
-            $('.input-text').val(JSON.stringify(responseValues))
+            if(formMethods.isResponseSelected(formButtonsDiv, responseValues, currentQuestionIndex, errorText)){
+                $('.input-text').val(JSON.stringify(responseValues))
+            }
         });
     });
 });
