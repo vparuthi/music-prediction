@@ -14,6 +14,7 @@ isResponseSelected: checks if a button has been clicked for the current question
 :return boolean: true if response is selected else false
 */
 formMethods.isResponseSelected = function(formButtonsDiv, responseValues, currentQuestionIndex, errorText){
+    return true
     if (typeof responseValues[currentQuestionIndex] != 'undefined'){
         return true
     }
