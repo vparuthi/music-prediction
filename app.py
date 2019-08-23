@@ -1,5 +1,4 @@
-from model import mlknn as model
-import os
+from model import mlknn, xgboost
 import json
 from flask import Flask, render_template, url_for, request, current_app, redirect, jsonify
 import csv
@@ -8,7 +7,8 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import configparser
 
-OPTIMIZED_MODEL_PARAMETERS_FILE_PATH = './resources/final_model_values.json'
+FINAL_MLKNN_MODEL_VALUES = './resources/final_mlknn_model_values.json'
+FINAL_XGBOOST_MODEL_VALUES = './resources/final_xgboost_model_values.json'
 SPOTIFY_SEARCH_API_URL = 'https://api.spotify.com/v1/search?q='
 CONFIG_FILE_PATH = 'config.ini'
 DEFAULT_NUMBER_OF_QUESTION_RESPONSE_OPTIONS = 5
@@ -19,16 +19,19 @@ app = Flask(__name__)
 
 @app.route('/process_survey', methods=['POST'])
 def process_survey():
-    form_values = list(map(int, json.loads(request.form['responseValues']).values()))
-    predicted_values = model.predict(current_app.model, form_values)
-    genres = list(compress(current_app.genres, predicted_values))
+    spotify_api_results = {}
     config = configparser.ConfigParser()
     config.read(CONFIG_FILE_PATH)
     spotify_api_keys = config['spotify api']
+
+    form_values = list(map(int, json.loads(request.form['responseValues']).values()))
+    predicted_values = xgboost.predict(current_app.model, form_values)
+    genres = list(compress(current_app.genres, predicted_values))
+
     client_credentials_manager = SpotifyClientCredentials(client_id=spotify_api_keys['CLIENT_ID'],
                                                           client_secret=spotify_api_keys['CLIENT_SECRET'])
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-    spotify_api_results = {}
+
     for genre in genres:
         genre_top_six = []
         playlists = sp.search(q=genre, type='playlist', limit=20).get('playlists').get('items')
@@ -47,7 +50,7 @@ def process_survey():
 
 @app.route('/')
 def index():
-    with open(OPTIMIZED_MODEL_PARAMETERS_FILE_PATH) as file:
+    with open(FINAL_XGBOOST_MODEL_VALUES) as file:
         questions = json.load(file)['features']
     with open('./resources/columns.csv', mode='r') as infile:
         reader = csv.reader(infile)
@@ -64,8 +67,8 @@ def index():
 
 
 def main():
-    clf = model.load_model()
-    with open(OPTIMIZED_MODEL_PARAMETERS_FILE_PATH) as file:
+    clf = xgboost.load_model()
+    with open(FINAL_XGBOOST_MODEL_VALUES) as file:
         genres = json.load(file)['genres']
     app.model = clf
     app.genres = genres

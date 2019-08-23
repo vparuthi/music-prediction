@@ -4,8 +4,8 @@ import preprocessing
 import json
 import pickle
 
-OPTIMIZED_MODEL_PARAMETERS_FILE_PATH = './resources/final_model_values.json'
-FINAL_MLKNN_MODEL_FILE_PATH = './model/finalized_MLkNN_model.sav'
+OPTIMIZED_MODEL_PARAMETERS_FILE_PATH = './resources/final_mlknn_model_values.json'
+FINAL_MLKNN_MODEL_FILE_PATH = './model/mlknn_model.sav'
 
 
 def create_model(file_path=FINAL_MLKNN_MODEL_FILE_PATH):
@@ -34,7 +34,7 @@ def predict(clf, question_answers):
 
     :param MLkNN_model clf: a trained sklearn MLkNN classifier
     :param list question_answers: a list of integers containing user responses for each question
-    :return:
+    :return: list of genres a user is predicted to like
     """
 
     # clf.predict() returns a sparse matrix and toarray() is utilized to convert it to a list
