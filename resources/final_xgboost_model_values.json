@@ -1,0 +1,50 @@
+{
+    "features": [
+        "dancing",
+        "shopping centres",
+        "spending on looks",
+        "musical instruments",
+        "shopping",
+        "cars",
+        "reading",
+        "comedy",
+        "rats",
+        "gender"
+    ],
+    "hyperparameters": {
+        "estimator__base_score": 0.5,
+        "estimator__booster": "gbtree",
+        "estimator__colsample_bylevel": 1,
+        "estimator__colsample_bynode": 1,
+        "estimator__colsample_bytree": 0.8,
+        "estimator__gamma": 0.3,
+        "estimator__learning_rate": 0.1,
+        "estimator__max_delta_step": 0,
+        "estimator__max_depth": 2,
+        "estimator__min_child_weight": 5,
+        "estimator__missing": null,
+        "estimator__n_estimators": 200,
+        "estimator__n_jobs": -1,
+        "estimator__nthread": null,
+        "estimator__objective": "multi:softmax",
+        "estimator__random_state": 0,
+        "estimator__reg_alpha": 0.005,
+        "estimator__reg_lambda": 1,
+        "estimator__scale_pos_weight": 1,
+        "estimator__seed": 27,
+        "estimator__silent": false,
+        "estimator__subsample": 0.7,
+        "estimator__verbosity": 1,
+        "estimator__num_class": 6,
+        "estimator__eval_metric": "auc",
+        "estimator__early_stopping_rounds": 50
+    },
+    "genres": [
+        "classical music",
+        "pop",
+        "metal or hardrock",
+        "hiphop, rap",
+        "latino",
+        "alternative"
+    ]
+}

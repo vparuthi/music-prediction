@@ -3,7 +3,7 @@ import json
 
 MUSIC_CHOICES = ['classical music', 'pop', 'metal or hardrock', 'hiphop, rap', 'latino', 'alternative']
 DATA_FILE_PATH = './resources/responses.csv'
-OPTIMIZED_MODEL_PARAMETERS_FILE_PATH = './resources/final_model_values.json'
+OPTIMIZED_MODEL_PARAMETERS_FILE_PATH = './resources/final_mlknn_model_values.json'
 THRESHOLD_TO_LIKE_A_GENRE = 4
 
 
