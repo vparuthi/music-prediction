@@ -3,14 +3,14 @@ import json
 
 MUSIC_CHOICES = ['classical music', 'pop', 'metal or hardrock', 'hiphop, rap', 'latino', 'alternative']
 DATA_FILE_PATH = './resources/responses.csv'
-OPTIMIZED_MODEL_PARAMETERS_FILE_PATH = './resources/final_mlknn_model_values.json'
 THRESHOLD_TO_LIKE_A_GENRE = 4
 
 
-def load_data():
+def load_data(file_path):
     """
     Loads X and y data from resources using predetermined features
     Returns two DataFrames, X and y data
+    :param string file_path: specifies which model's final values to utilize
     :return: tuple(DataFrame, DataFrame)
     """
 
@@ -20,7 +20,7 @@ def load_data():
 
     # using the features found to be the best predictors during the EDA process
     # further work can be seen in the music_prediction_eda jupyter notbook
-    with open(OPTIMIZED_MODEL_PARAMETERS_FILE_PATH) as file:
+    with open(file_path) as file:
         json_file = json.load(file)
 
     return raw_data[json_file['features']], raw_data[MUSIC_CHOICES]
