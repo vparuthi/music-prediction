@@ -7,23 +7,6 @@ div.question{
 .previous-btn{
     visibility: hidden;
 }
-.submit-btn{
-    background-color: #27ae60;
-    color: #EFEEEE;
-    float: right;
-    display: inline;
-    visibility: hidden;
-}
-.submit-btn:focus{
-    color: #EFEEEE;
-}
-.submit-btn:hover{
-    color: #EFEEEE;
-    background-color: #2ecc71;
-}
-.input-text{
-    display: none;
-}
 .col{
     display: inline;
 }
@@ -49,10 +32,6 @@ div.question{
     color: #325d79
 }
 .response-btn:hover{
-    color: #F26627;
-}
-.btn-selected{
-    background-color: #325d79;
     color: #F26627;
 }
 .form {
@@ -105,4 +84,11 @@ form{
 }
 .form-buttons{
     display:inline;
+}
+.submit-btn{
+    background-color: #27ae60;
+    color: #EFEEEE;
+    float: right;
+    display: inline;
+    visibility: hidden;
 }
