@@ -18,6 +18,7 @@ A Flask web application that uses an xgboost model to predict a user's favorite 
     CLIENT_ID=XXXXXXXXXXXXXXXXXXXXXXX
     CLIENT_SECRET=XXXXXXXXXXXXXXXXXXXXXXX
     ```
+    Note: these keys can be obtained by creating a Spotify Developer account for free.
 5) Run the app!
     ```text
     python3 app.py
