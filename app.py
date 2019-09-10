@@ -29,10 +29,9 @@ def process_survey():
     config.read(CONFIG_FILE_PATH)
     spotify_api_keys = config['spotify api']
 
-    # form_values = list(map(int, json.loads(request.form['responseValues']).values()))
-    # predicted_values = xgboost.predict(current_app.model, form_values)
-    # genres = list(compress(current_app.genres, predicted_values))
-    genres = ['Hip Hop']
+    form_values = list(map(int, json.loads(request.form['responseValues']).values()))
+    predicted_values = xgboost.predict(current_app.model, form_values)
+    genres = list(compress(current_app.genres, predicted_values))
 
     client_credentials_manager = SpotifyClientCredentials(client_id=spotify_api_keys['CLIENT_ID'],
                                                           client_secret=spotify_api_keys['CLIENT_SECRET'])
