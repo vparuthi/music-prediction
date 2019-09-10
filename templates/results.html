@@ -4,14 +4,14 @@
 <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='css/results.css')}}">
 <script>
     require(['config'], function(){
-        require(['results']);
+        require(['results', 'fontAwesome']);
     });
 </script>
 {% endblock %}
 
 {% block body %}
-<div class="form-header container">
-    <div class="row animation">
+<div class="form-header container animation">
+    <div class="row">
         <div class="col">
             <h1 id="header">
                 Here are your results!<br>
@@ -19,18 +19,28 @@
             </h1>
         </div>
     </div>
-    <div class="row animation">
-        <div class="col">
-           <h2> The model predicts you like: <br>
-                {% for genre, playlists in genres.items() %}
-                    {{ genre.title() }}<br>
-                {% endfor %}
-           </h2>
+    <div class="container fixed-height">
+        <div class="add-data-container">
+            <div class="row">
+                <div class="col make-better-text-col">
+                    <h5>Help make me better and please let me know what genres you actually like :) </h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col buttons-col">
+                    <div class="form-buttons">
+                        <button class="btn btn-circle btn-xl response-btn">Classical</button>
+                        <button class="btn btn-circle btn-xl response-btn">Pop</button>
+                        <button class="btn btn-circle btn-xl response-btn">Metal</button>
+                        <button class="btn btn-circle btn-xl response-btn">Hip Hop</button>
+                        <button class="btn btn-circle btn-xl response-btn">Latino</button>
+                        <button class="btn btn-circle btn-xl response-btn">Alternative</button>
+                        <button type="submit" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col">
-           <h2>All possible genres it could've predicted:<br>
-               Classical<br>Music pop<br>Metal <br>Hiphop and Rap <br>Latino <br> Alternative</h2>
-        </div>
+        <h2 class="thank-you">Thank You!</h2>
     </div>
 </div>
     {% for genre, playlists in genres.items() %}

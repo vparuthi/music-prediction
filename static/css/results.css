@@ -16,6 +16,7 @@ h2{
     text-shadow: 1px 1px #616161;
 }
 h1{
+    text-shadow: 1px 1px #616161;
     text-align: center;
     font-size: 200%;
     margin: 50px;
@@ -35,4 +36,47 @@ img{
 }
 img:hover{
     transform: scale(1.1);
+}
+.btn-circle.btn-xl {
+    width: 100px;
+    height: 50px;
+    font-size: 12px;
+    line-height: 1;
+    margin: 20px;
+    -webkit-box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
+}
+.form-buttons{
+    display:inline;
+    text-align:center;
+}
+.response-btn{
+    background-color: white;
+    color: #325d79
+}
+.response-btn:hover{
+    color: #F26627;
+}
+.make-better-text-col{
+    text-shadow: 1px 1px #616161;
+    text-align: center;
+    margin-top: 15px;
+}
+.buttons-col{
+    text-align:center;
+}
+.submit-btn{
+    background-color: #27ae60;
+    color: #EFEEEE;
+    text-align:center;
+    display: inline;
+}
+.thank-you{
+    display: none;
+    text-align: center;
+    vertical-align: middle;
+}
+.fixed-height{
+    height: 140px;
 }

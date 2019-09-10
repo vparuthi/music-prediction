@@ -17,3 +17,17 @@ h3{
 a{
     text-decoration: none;
 }
+.submit-btn:focus{
+    color: #EFEEEE;
+}
+.submit-btn:hover{
+    color: #EFEEEE;
+    background-color: #2ecc71;
+}
+.input-text{
+    display: none;
+}
+.btn-selected{
+    background-color: #325d79 !important;
+    color: #F26627 !important;
+}

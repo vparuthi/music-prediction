@@ -17,6 +17,11 @@ CATEGORICAL_QUESTIONS = {'Gender': ['M', 'F']}
 app = Flask(__name__)
 
 
+@app.route('/add_data', methods=['POST'])
+def add_data():
+    return request.json
+
+
 @app.route('/process_survey', methods=['POST'])
 def process_survey():
     spotify_api_results = {}
