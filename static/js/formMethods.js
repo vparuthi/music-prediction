@@ -33,12 +33,10 @@ updateForm: updates the front-end when the user changes page
 formMethods.updateForm = function(questionTitle, currentQuestion, responseValues, currentQuestionIndex){
     questionTitle.text(currentQuestion[0])
     $('.response-btn').removeClass('btn-selected')
-//    if (currentQuestion[1].length != 6){
         $('.response-btn').css('visibility', 'hidden')
         for(var i = 0; i < currentQuestion[1].length; i++){
             $(".response-btn[value='"+i.toString()+"']").css('visibility', 'visible').text(currentQuestion[1][i])
         }
-//    }
    this.reselectResponse(responseValues, currentQuestionIndex)
    return
 }
