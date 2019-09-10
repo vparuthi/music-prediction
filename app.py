@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 @app.route('/add_data', methods=['POST'])
 def add_data():
-    return json.loads(request.form['responseValues']).values()
+    return request.json
 
 
 @app.route('/process_survey', methods=['POST'])

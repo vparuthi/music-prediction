@@ -19,39 +19,28 @@
             </h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-           <h2> The model predicts you like: <br>
-                {% for genre, playlists in genres.items() %}
-                    {{ genre.title() }}<br>
-                {% endfor %}
-           </h2>
-        </div>
-        <div class="col">
-           <h2>All possible genres it could've predicted:<br>
-               Classical<br>Pop<br>Metal<br>Hip hop<br>Latino<br>Alternative</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col make-better-text-col">
-            <h5>Help make me better and please let me know what genres you actually like :) </h5>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col buttons-col">
-            <div class="form-buttons">
-                <button class="btn btn-circle btn-xl response-btn">Classical</button>
-                <button class="btn btn-circle btn-xl response-btn">Pop</button>
-                <button class="btn btn-circle btn-xl response-btn">Metal</button>
-                <button class="btn btn-circle btn-xl response-btn">Hip Hop</button>
-                <button class="btn btn-circle btn-xl response-btn">Latino</button>
-                <button class="btn btn-circle btn-xl response-btn">Alternative</button>
-                <form action="{{ url_for('add_data') }}" method="post" class="form">
-                    <input type="text" name="responseValues" class="input-text">
-                    <button type="submit" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
-                </form>
+    <div class="container fixed-height">
+        <div class="add-data-container">
+            <div class="row">
+                <div class="col make-better-text-col">
+                    <h5>Help make me better and please let me know what genres you actually like :) </h5>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col buttons-col">
+                    <div class="form-buttons">
+                        <button class="btn btn-circle btn-xl response-btn">Classical</button>
+                        <button class="btn btn-circle btn-xl response-btn">Pop</button>
+                        <button class="btn btn-circle btn-xl response-btn">Metal</button>
+                        <button class="btn btn-circle btn-xl response-btn">Hip Hop</button>
+                        <button class="btn btn-circle btn-xl response-btn">Latino</button>
+                        <button class="btn btn-circle btn-xl response-btn">Alternative</button>
+                        <button type="submit" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
+        <h2 class="thank-you">Thank You!</h2>
     </div>
 </div>
     {% for genre, playlists in genres.items() %}

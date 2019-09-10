@@ -51,9 +51,6 @@ img:hover{
     display:inline;
     text-align:center;
 }
-.response-btn:focus{
-    color: #F26627;
-}
 .response-btn{
     background-color: white;
     color: #325d79
@@ -74,4 +71,12 @@ img:hover{
     color: #EFEEEE;
     text-align:center;
     display: inline;
+}
+.thank-you{
+    display: none;
+    text-align: center;
+    vertical-align: middle;
+}
+.fixed-height{
+    height: 140px;
 }
