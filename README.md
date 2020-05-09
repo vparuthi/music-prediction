@@ -1,8 +1,8 @@
 # music-predictor
 
-A Flask web application that uses an xgboost model to predict a user's favorite genre of music
+A Flask web application that uses an XGBoost model to predict a user's favorite genre of music
 
-[Active App Link (Click Me!)](http://35.203.81.177:8080/)
+Check out the active app [here](https://www.youtube.com/watch?v=4rpUEXpKIak)!
 
 ## Installation
 
