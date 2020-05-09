@@ -2,7 +2,7 @@
 
 A Flask web application that uses an XGBoost model to predict a user's favorite genre of music
 
-Check out the active app [here](https://www.youtube.com/watch?v=4rpUEXpKIak)!
+Check out the active app [here](http://34.86.82.218/)!
 
 ## Installation
 

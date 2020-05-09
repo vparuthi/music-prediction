@@ -77,7 +77,7 @@ def main():
         genres = json.load(file)['genres']
     app.model = clf
     app.genres = genres
-    app.run(host='0.0.0.0', port='8080')
+    app.run(host='0.0.0.0', port='80')
 
 
 if __name__ == '__main__':
