@@ -2,7 +2,7 @@
 
 {% block head %}
 <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='css/survey.css')}}">
-<h1>Bored of The Same Music?</h1>
+<h1 class="title">Bored of The Same Music?</h1>
 <script>
     var questions = {{ questions|tojson }}
 
@@ -14,17 +14,15 @@
 
 {% block body %}
 <div class="main">
-    <div class="form-header container">
-        <div class="row">
-            <div class="col">
-                <h2>Answer the following questions and I'll try to predict your favourite genres of music!</h2>
-            </div>
-            <div class="col">
-               <h2>Responding with a 5 means you really like what the question is asking, and 0 means you don't.</h2>
-            </div>
-            <div class="col">
-               <h2>I'm a XGBoost model running in a Flask app on a GCP Compute Engine server.</h2>
-            </div>
+    <div class="form-header">
+        <div class="text">
+            <h2>Answer 10 questions and I'll try to predict your favourite genres of music!</h2>
+        </div>
+        <div class="text">
+           <h2>5 means you really like what the question is asking, and 0 means you don't.</h2>
+        </div>
+        <div class="text">
+           <h2>If you're wondering, I'm a XGBoost model running in a Flask app.</h2>
         </div>
     </div>
     <div class="form">
