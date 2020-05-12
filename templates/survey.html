@@ -2,7 +2,7 @@
 
 {% block head %}
 <link rel="stylesheet" type= "text/css" href="{{url_for('static', filename='css/survey.css')}}">
-<h1 class="title">Bored of The Same Music?</h1>
+<h1 id="app-title">Bored of The Same Music?</h1>
 <script>
     var questions = {{ questions|tojson }}
 
@@ -14,7 +14,7 @@
 
 {% block body %}
 <div class="main">
-    <div class="form-header">
+    <div class="form-header flex flex-100">
         <div class="text">
             <h2>Answer 10 questions and I'll try to predict your favourite genres of music!</h2>
         </div>
@@ -25,19 +25,19 @@
            <h2>If you're wondering, I'm a XGBoost model running in a Flask app.</h2>
         </div>
     </div>
-    <div class="form">
-        <div class="title-container">
-            <h3 class="title-text" id="form-question"></h3>
-            <h5 class="title-text error-text">Please select an option</h5>
+    <div class="form flex">
+        <div class="title-container flex flex-center flex-100 flex-wrap">
+            <h3 class="title-text flex flex-100 flex-center" id="form-question"></h3>
+            <h5 class="title-text flex flex-100 flex-center error-text">Please select an option</h5>
         </div>
-        <div class="form-options"></div>
-        <div class="form-buttons">
-            <button type="button" class="btn btn-circle btn-xl previous-btn nav-btn"><i class="fas fa-arrow-left"></i></button>
-            <button type="button" class="btn btn-circle btn-xl next-btn nav-btn"><i class="fas fa-arrow-right"></i></button>
-            <div id="container"></div>
+        <div class="form-options flex flex-100 flex-center"></div>
+        <div class="form-buttons flex flex-100 flex-center">
+            <button type="button" class="btn btn-circle btn-xl previous-btn nav-btn form-footer-item"><i class="fas fa-arrow-left"></i></button>
+            <button type="button" class="btn btn-circle btn-xl next-btn nav-btn form-footer-item"><i class="fas fa-arrow-right"></i></button>
+            <div id="container" class="flex form-footer-item"></div>
             <form action="{{ url_for('process_survey') }}" method="post">
                 <input type="text" name="responseValues" class="input-text">
-                <button type="submit" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
+                <button type="submit" class="btn btn-circle btn-xl submit-btn form-footer-item"><i class="fas fa-check"></i></button>
             </form>
         </div>
     </div>

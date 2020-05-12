@@ -1,23 +1,6 @@
 /* GENERAL STYLING */
 body{
     background-color: #9BD7D1;
-    padding: 1rem;
-}
-
-.flex {
-    display: flex;
-}
-
-.flex.flex-wrap {
-    flex-wrap: wrap;
-}
-
-.flex.flex-center {
-    justify-content: center;
-}
-
-.flex.flex-100 {
-    flex-basis: 100%;
 }
 
 .animation{
@@ -46,6 +29,7 @@ body{
 
 /* RESULTS GRID */
 .results {
+    min-height: 760px
     transition: all 2s;
 }
 

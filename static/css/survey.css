@@ -1,5 +1,5 @@
 /* PAGE STYLING */
-.title {
+#app-title {
     margin: 1rem;
     text-align: center;
 }
@@ -19,7 +19,8 @@
 }
 
 .form-header .text {
-    flex: 1
+    padding: 1rem;
+    flex: 1;
 }
 
 @media only screen and (max-width: 992px) {
@@ -28,17 +29,21 @@
         text-align: justify;
         padding: 0.5rem 1rem;
     }
+
+    #app-title {
+        font-size: 3rem;
+    }
 }
 
 /* FORM STYLING */
 .form {
+    min-height: 280px;
     display: flex;
     flex-basis: 100%;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 1rem 1rem;
-    min-height: 500px;
-
+    margin: 1rem 10rem;
+    padding: 1rem;
     background: #fafafa;
     border-radius: 60px;
     -webkit-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
@@ -49,24 +54,36 @@
 .form .title-container {
     color: black;
     font-size: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     margin: 1rem 0;
+    margin-bottom: 0;
+}
+
+.title-text {
+    text-align: center;
+    flex: 1;
 }
 
 @media only screen and (max-width: 992px) {
+    .form {
+        min-height: 500px;
+        margin: 1rem 1rem;
+        padding: 0;
+    }
     .form .title-container {
         flex: 0 0 100%;
         padding: 1rem;
         text-align: center;
+        align-items: center;
+        min-height: 155px;
     }
     .title-text {
         flex: 0 0 100%;
 
     }
 
+    #form-question {
+        font-size: 1.5rem;
+    }
 }
 
 .question-title{
@@ -83,11 +100,20 @@
 }
 
 .form .form-options {
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
+    margin: 1rem;
     justify-content: space-evenly;
+    flex: 1;
+    height: fit-content;
 }
+
+@media only screen and (max-width: 992px) {
+    .form .form-options {
+        margin: 0;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+}
+
 
 .btn-circle.btn-xl {
     width: 6rem;
@@ -117,6 +143,11 @@
     flex: 0 0 100%;
     flex-wrap: wrap;
     text-align: center;
+    justify-content: space-evenly;
+}
+
+.form .form-options div {
+    display: flex;
 }
 
 @media only screen and (max-width: 992px) {
@@ -182,18 +213,22 @@
     color: #EFEEEE;
     float: right;
     display: inline;
+    visibility: hidden;
 }
 
 #container {
-  margin: 20px;
   width: 70px;
   height: 70px;
   display: inline;
-  position: fixed !important;
-  visibility: hidden;
+  visibility: visible;
 }
 
 @media only screen and (max-width: 992px) {
-    display: none;
+    #container {
+        display: none;
+    }
 }
 
+.form-footer-item {
+    margin: 0 1rem;
+}

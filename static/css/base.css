@@ -3,8 +3,25 @@
 body{
     font-family: 'Montserrat', sans-serif;
     font-weight: 800;
-    background-color: #00a7f6;
+    background-color: #7bbbda;
     color: #fafafa;
+    padding: 1rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex.flex-center {
+    justify-content: center;
+}
+
+.flex.flex-100 {
+    flex-basis: 100%;
 }
 
 h1 {
@@ -26,16 +43,20 @@ h2{
 a{
     text-decoration: none;
 }
+
 .submit-btn:focus{
     color: #EFEEEE;
 }
+
 .submit-btn:hover{
     color: #EFEEEE;
     background-color: #2ecc71;
 }
+
 .input-text{
     display: none;
 }
+
 .btn-selected{
     background-color: #325d79 !important;
     color: #F26627 !important;
