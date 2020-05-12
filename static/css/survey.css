@@ -38,6 +38,7 @@
 /* FORM STYLING */
 .form {
     min-height: 280px;
+    max-width: 700px;
     display: flex;
     flex-basis: 100%;
     flex-wrap: wrap;
