@@ -1,9 +1,62 @@
+/* GENERAL STYLING */
 body{
     background-color: #9BD7D1;
+    padding: 1rem;
 }
+
+.flex {
+    display: flex;
+}
+
+.flex.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex.flex-center {
+    justify-content: center;
+}
+
+.flex.flex-100 {
+    flex-basis: 100%;
+}
+
+.animation{
+    visibility: hidden;
+}
+
+/* HEADER */
+.page-title {
+    text-align: justify;
+    font-size: 2rem;
+    color: black;
+    padding: 1rem 0;
+}
+
+.btn-circle.btn-xl {
+    flex: 0 0 33%;
+    height: 50px;
+    font-size: 12px;
+    line-height: 1;
+    margin: 10px;
+    margin-left: 0;
+    -webkit-box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
+}
+
+/* RESULTS GRID */
+.results {
+    transition: all 2s;
+}
+
+.genre-title {
+    padding: 0.5rem 0;
+}
+
 .playlist-image{
     width: inherit;
 }
+
 .playlist{
     width: 300px;
     margin: 20px 10px;
@@ -11,72 +64,52 @@ body{
     -moz-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
     box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
 }
-h2{
-    text-align: justify;
-    text-shadow: 1px 1px #616161;
+
+.img-container {
+    flex: 1 1;
 }
-h1{
-    text-shadow: 1px 1px #616161;
-    text-align: center;
-    font-size: 200%;
-    margin: 50px;
-}
-#header{
-    font-size: 180%;
-}
-.animation{
-    visibility: hidden;
-}
-.col{
-  justify-items: center;
-  align-items: center;
-}
-img{
+
+.playlist-img{
     transition: all .5s cubic-bezier(0.42, 0, 0.06, 2.03);
 }
-img:hover{
+
+.playlist-img:hover{
     transform: scale(1.1);
 }
-.btn-circle.btn-xl {
-    width: 100px;
-    height: 50px;
-    font-size: 12px;
-    line-height: 1;
-    margin: 20px;
-    -webkit-box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
-    -moz-box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
-    box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
-}
-.form-buttons{
-    display:inline;
-    text-align:center;
-}
+
 .response-btn{
     background-color: white;
     color: #325d79
 }
+
 .response-btn:hover{
     color: #F26627;
 }
-.make-better-text-col{
-    text-shadow: 1px 1px #616161;
-    text-align: center;
-    margin-top: 15px;
-}
-.buttons-col{
-    text-align:center;
-}
+
 .submit-btn{
     background-color: #27ae60;
     color: #EFEEEE;
     text-align:center;
     display: inline;
 }
+
+/* FOOTER */
+.feedback {
+    padding: 1rem 0;
+}
+
+.feedback h5{
+    text-align: justify;
+    text-shadow: 1px 1px #616161;
+    color: white;
+}
+
+.feedback-buttons .response-btn{
+    flex: 1 1;
+}
+
 .thank-you{
     display: none;
-    text-align: center;
-    vertical-align: middle;
-}
-.fixed-height{
-    height: 140px;
+    width: 100%;
+    padding: 1rem 0;
 }

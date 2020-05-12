@@ -41,11 +41,10 @@ define(['domReady', 'jquery', 'jqueryUI'], function(domReady, $, ui, ){
                 contentType: 'application/json;charset=UTF-8',
                 data: JSON.stringify(responseValues),
                 success: function (data) {
-                    $('.add-data-container').fadeOut()
+                    $('.feedback').fadeOut();
                     setTimeout(function(){
                         $('.thank-you').fadeIn()
-                    }, 700);
-
+                    }, 200);
                 }
             });
         });

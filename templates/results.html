@@ -10,62 +10,46 @@
 {% endblock %}
 
 {% block body %}
-<div class="form-header container animation">
-    <div class="row">
-        <div class="col">
-            <h1 id="header">
-                Here are your results!<br>
-                These playlists are fire so be sure to click them and listen!
-            </h1>
-        </div>
-    </div>
-    <div class="container fixed-height">
-        <div class="add-data-container">
-            <div class="row">
-                <div class="col make-better-text-col">
-                    <h5>Help make me better and please let me know what genres you actually like :) </h5>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col buttons-col">
-                    <div class="form-buttons">
-                        <button class="btn btn-circle btn-xl response-btn">Classical</button>
-                        <button class="btn btn-circle btn-xl response-btn">Pop</button>
-                        <button class="btn btn-circle btn-xl response-btn">Metal</button>
-                        <button class="btn btn-circle btn-xl response-btn">Hip Hop</button>
-                        <button class="btn btn-circle btn-xl response-btn">Latino</button>
-                        <button class="btn btn-circle btn-xl response-btn">Alternative</button>
-                        <button type="submit" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <h2 class="thank-you">Thank You!</h2>
+<div class="flex flex-100 animation">
+    <div header="flex page-title flex-100">
+        <h1>
+            Here are your results!
+        </h1>
     </div>
 </div>
-    {% for genre, playlists in genres.items() %}
-        <div class="genre">
-            <div class="container">
-                <div class="row animation">
-                    <div class="col">
-                        <h1 class="genre-title">{{genre.title()}}</h1>
-                    </div>
-                </div>
-                <div class="row animation">
-                    {% for playlist in playlists %}
-                        {% if playlist.get('images') %}
-                            <div class="col">
-                                <a href={{playlist.get('external_urls').get('spotify')}}>
-                                    <div class="playlist">
-                                        <img src={{playlist.get('images')[0].get('url')}} class="playlist-image">
-                                    </div>
-                                </a>
+
+<div class="results">
+     {% for genre, playlists in genres.items() %}
+        <div class="genre flex flex-wrap flex-100">
+            <h1 class="flex flex-wrap flex-100 genre-title animation">{{genre.title()}}</h1>
+            {% for playlist in playlists %}
+                {% if playlist.get('images') %}
+                    <div class="flex flex-center img-container animation">
+                        <a href={{playlist.get('external_urls').get('spotify')}}>
+                            <div class="flex playlist">
+                                <img src={{playlist.get('images')[0].get('url')}} class="playlist-image">
                             </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-            </div>
+                        </a>
+                    </div>
+                {% endif %}
+            {% endfor %}
         </div>
     {% endfor %}
+</div>
 
+<div class="footer flex flex-100 flex-wrap">
+    <div class="flex feedback flex-100 flex-wrap">
+        <h5 class="flex-100"> Wanna make me improve? Let me know what genres you actually like! </h5>
+        <div class="flex feedback-buttons flex-100 flex-wrap flex-center">
+            <button class="btn btn-circle btn-xl response-btn">Classical</button>
+            <button class="btn btn-circle btn-xl response-btn">Pop</button>
+            <button class="btn btn-circle btn-xl response-btn">Metal</button>
+            <button class="btn btn-circle btn-xl response-btn">Hip Hop</button>
+            <button class="btn btn-circle btn-xl response-btn">Latino</button>
+            <button class="btn btn-circle btn-xl response-btn">Alternative</button>
+            <button type="submit" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
+        </div>
+    </div>
+    <h2 class="thank-you">Thank You!</h2>
+</div>
 {% endblock %}
