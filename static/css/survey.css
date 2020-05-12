@@ -1,5 +1,7 @@
+/* PAGE STYLING */
 .title {
     margin: 1rem;
+    text-align: center;
 }
 
 .main {
@@ -8,6 +10,7 @@
     flex-wrap: wrap;
 }
 
+/* FORM HEADER STYLING */
 .form-header {
     flex-basis: 100%;
     display: flex;
@@ -19,63 +22,145 @@
     flex: 1
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 992px) {
     .form-header .text {
         flex-basis: 100%;
         text-align: justify;
-        padding: 0 0.5rem;
+        padding: 0.5rem 1rem;
     }
 }
 
+/* FORM STYLING */
+.form {
+    display: flex;
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 1rem 1rem;
+    min-height: 500px;
 
+    background: #fafafa;
+    border-radius: 60px;
+    -webkit-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
+}
 
-div.question{
-    margin-left: 10px;
+.form .title-container {
+    color: black;
+    font-size: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
 }
-.question-input, .question-label{
-    margin: 10px;
+
+@media only screen and (max-width: 992px) {
+    .form .title-container {
+        flex: 0 0 100%;
+        padding: 1rem;
+        text-align: center;
+    }
+    .title-text {
+        flex: 0 0 100%;
+
+    }
+
 }
-.previous-btn{
+
+.question-title{
+    text-align: center;
+    padding-top: 10px;
+    font-size: 1.5rem;
+}
+
+.error-text{
+    color: #F18C8E;
+    font-size: 110%;
+    display: inline;
     visibility: hidden;
 }
-.col{
-    display: inline;
+
+.form .form-options {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
+
 .btn-circle.btn-xl {
-    width: 70px;
-    height: 70px;
+    width: 6rem;
+    height: 4rem;
     border-radius: 35px;
     font-size: 24px;
     line-height: 1;
-    margin: 20px;
     -webkit-box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
     -moz-box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
     box-shadow: 5px 5px 133px -44px rgba(0,0,0,0.75);
 }
+
+@media only screen and (max-width: 992px) {
+    .btn-circle.btn-xl {
+        border-radius: 18px;
+    }
+
+    .form-options .btn {
+        width: 6rem;
+        margin: 1rem;
+    }
+}
+
+.form .form-buttons {
+    width: 100%;
+    display: flex;
+    flex: 0 0 100%;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+@media only screen and (max-width: 992px) {
+    .form .form-buttons {
+        padding: 0 0.5rem;
+        margin: 2rem;
+    }
+
+    .form .form-buttons button{
+        flex: 1;
+        margin: 0 0.25rem;
+    }
+
+    .form .form-options div {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .error-text{
+        flex: 0 0 100%;
+        text-align: center;
+    }
+}
+
+.previous-btn{
+    visibility: hidden;
+}
+
 .btn:focus{
     outline:0 !important;
 }
+
 .response-btn:focus{
     color: #F26627;
 }
+
 .response-btn{
     background-color: #9bd7d1;
     color: #325d79
 }
+
 .response-btn:hover{
     color: #F26627;
-}
-.form {
-    width: 665px;
-    height: 260px !important;
-    position: relative;
-    margin: 50px auto;
-    background: #fafafa;
-    border-radius: 60px;
-    height: 286px;
-    -webkit-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
-    box-shadow: 10px 10px 29px -8px rgba(0,0,0,0.75);
 }
 
 .nav-btn{
@@ -92,39 +177,23 @@ div.question{
     color: #EFEEEE;
 }
 
-.question-title{
-    text-align: center;
-    padding-top: 10px;
-    font-size: 1.5rem;
-}
-
-h1{
-    text-align: center;
-}
-
-.error-text{
-    color: #F18C8E;
-    font-size: 110%;
-    display: inline;
-    visibility: hidden;
-}
-form{
+.submit-btn{
+    background-color: #27ae60;
+    color: #EFEEEE;
+    float: right;
     display: inline;
 }
+
 #container {
   margin: 20px;
   width: 70px;
   height: 70px;
   display: inline;
   position: fixed !important;
+  visibility: hidden;
 }
-.form-buttons{
-    display:inline;
+
+@media only screen and (max-width: 992px) {
+    display: none;
 }
-.submit-btn{
-    background-color: #27ae60;
-    color: #EFEEEE;
-    float: right;
-    display: inline;
-    visibility: hidden;
-}
+

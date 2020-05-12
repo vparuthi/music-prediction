@@ -26,14 +26,16 @@
         </div>
     </div>
     <div class="form">
-        <h3 class="question-title"></h3>
-        <div class="form-check form-check-inline"></div>
+        <div class="title-container">
+            <h3 class="title-text" id="form-question"></h3>
+            <h5 class="title-text error-text">Please select an option</h5>
+        </div>
+        <div class="form-options"></div>
         <div class="form-buttons">
             <button type="button" class="btn btn-circle btn-xl previous-btn nav-btn"><i class="fas fa-arrow-left"></i></button>
             <button type="button" class="btn btn-circle btn-xl next-btn nav-btn"><i class="fas fa-arrow-right"></i></button>
-            <h5 class="error-text">Please select an option</h5>
             <div id="container"></div>
-            <form action="{{ url_for('process_survey') }}" method="post" class="form">
+            <form action="{{ url_for('process_survey') }}" method="post">
                 <input type="text" name="responseValues" class="input-text">
                 <button type="submit" class="btn btn-circle btn-xl submit-btn"><i class="fas fa-check"></i></button>
             </form>

@@ -69,7 +69,7 @@ formMethods.populateForm = function(formButtonsDiv, currentQuestion, questionTit
             text: option.toString(),
             class: 'btn btn-circle btn-xl response-btn',
             id: option
-        }).appendTo(formButtonsDiv);
+        }).wrap('<div>').parent().appendTo(formButtonsDiv);
     }
     questionTitle.text(currentQuestion[0])
     return

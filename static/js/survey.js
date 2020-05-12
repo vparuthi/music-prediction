@@ -3,8 +3,8 @@ define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], functio
     //    questions is a 2D array, where col_1 = question text and col_2 = number of response options
         var currentQuestionIndex = 0;
         var form = $('.form');
-        var questionTitle = form.find('h3');
-        var formButtonsDiv = form.find('div.form-check-inline');
+        var questionTitle = form.find('#form-question');
+        var formButtonsDiv = form.find('div.form-options');
         var currentQuestion = questions[currentQuestionIndex];
         var responseValues = {};
         var submitButton = $('.submit-btn');
