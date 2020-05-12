@@ -5,8 +5,8 @@ from sklearn.multiclass import OneVsRestClassifier
 import pickle
 import pandas as pd
 
-OPTIMIZED_MODEL_PARAMETERS_FILE_PATH = './resources/final_xgboost_model_values.json'
-FINAL_XGBOOST_MODEL_FILE_PATH = './model/xgboost_model.sav'
+OPTIMIZED_MODEL_PARAMETERS_FILE_PATH = '/home/verabibj/music-prediction/resources/final_xgboost_model_values.json'
+FINAL_XGBOOST_MODEL_FILE_PATH = '/home/verabibj/music-prediction/model/xgboost_model.sav'
 
 
 def create_model(file_path=FINAL_XGBOOST_MODEL_FILE_PATH):
@@ -57,4 +57,3 @@ def load_model(file_path=FINAL_XGBOOST_MODEL_FILE_PATH):
     :return:
     """
     return pickle.load(open(file_path, 'rb'))
-
