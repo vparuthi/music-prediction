@@ -6,15 +6,18 @@ from itertools import compress
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import configparser
+import pickle
 
 FINAL_MLKNN_MODEL_VALUES = './resources/final_mlknn_model_values.json'
-FINAL_XGBOOST_MODEL_VALUES = './resources/final_xgboost_model_values.json'
+FINAL_XGBOOST_MODEL_VALUES = '/home/verabibj/music-prediction/resources/final_xgboost_model_values.json'
 SPOTIFY_SEARCH_API_URL = 'https://api.spotify.com/v1/search?q='
 CONFIG_FILE_PATH = 'config.ini'
 DEFAULT_NUMBER_OF_QUESTION_RESPONSE_OPTIONS = 5
 # CATEGORICAL_QUESTIONS is a dict where value is the question, key is the number of categories
 CATEGORICAL_QUESTIONS = {'Gender': ['M', 'F']}
+
 app = Flask(__name__)
+PREFIX = "https://verajparuthi.com/music-prediction"
 
 
 @app.route('/add_data', methods=['POST'])
@@ -29,10 +32,16 @@ def process_survey():
     config.read(CONFIG_FILE_PATH)
     spotify_api_keys = config['spotify api']
 
-    form_values = list(map(int, json.loads(request.form['responseValues']).values()))
-    predicted_values = xgboost.predict(current_app.model, form_values)
-    genres = list(compress(current_app.genres, predicted_values))
+    form_values = [int(x) for x in json.loads(request.form['responseValues']).values()]
+    clf = open('/home/verabibj/music-prediction/model/xgboost_model.sav', 'rb')
+    clf = pickle.load(clf)
 
+    predicted_values = xgboost.predict(clf, form_values)
+    with open(FINAL_XGBOOST_MODEL_VALUES) as file:
+        genres = json.load(file)['genres']
+
+    genres = list(compress(genres, predicted_values))
+    print("asfd")
     client_credentials_manager = SpotifyClientCredentials(client_id=spotify_api_keys['CLIENT_ID'],
                                                           client_secret=spotify_api_keys['CLIENT_SECRET'])
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
@@ -66,7 +75,7 @@ def index():
         if question in CATEGORICAL_QUESTIONS:
             questions_and_options.append([question, CATEGORICAL_QUESTIONS[question]])
         else:
-            questions_and_options.append([question, list(range(DEFAULT_NUMBER_OF_QUESTION_RESPONSE_OPTIONS+1))])
+            questions_and_options.append([question, list(range(DEFAULT_NUMBER_OF_QUESTION_RESPONSE_OPTIONS + 1))])
 
     return render_template('survey.html', questions=questions_and_options)
 
@@ -77,7 +86,7 @@ def main():
         genres = json.load(file)['genres']
     app.model = clf
     app.genres = genres
-    app.run(host='0.0.0.0', port='80')
+    app.run()
 
 
 if __name__ == '__main__':
