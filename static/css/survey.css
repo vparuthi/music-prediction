@@ -26,11 +26,12 @@
 @media only screen and (max-width: 992px) {
     .form-header .text {
         flex-basis: 100%;
-        text-align: justify;
+        text-align: left;
         padding: 0.5rem 1rem;
     }
 
     #app-title {
+        text-align: left;
         font-size: 3rem;
     }
 }
@@ -69,13 +70,13 @@
         min-height: 500px;
         margin: 1rem 1rem;
         padding: 0;
+        border-radius: 25px;
     }
     .form .title-container {
         flex: 0 0 100%;
         padding: 1rem;
         text-align: center;
         align-items: center;
-        min-height: 155px;
     }
     .title-text {
         flex: 0 0 100%;
@@ -83,7 +84,9 @@
     }
 
     #form-question {
+        min-height: 90px;
         font-size: 1.5rem;
+        margin: 0;
     }
 }
 
@@ -214,7 +217,6 @@
     color: #EFEEEE;
     float: right;
     display: inline;
-    visibility: hidden;
 }
 
 #container {

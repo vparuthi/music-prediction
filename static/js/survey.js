@@ -44,7 +44,7 @@ define(['domReady', 'jquery', 'jqueryUI', 'formMethods', 'progressBar'], functio
             $('.input-text').val(JSON.stringify(responseValues))
             $('.error-text').css('visibility', 'hidden')
             if(currentQuestionIndex + 1 == questions.length){
-                $(submitButton).css('visibility', 'visible')
+                $(submitButton).removeAttr("disabled")
             }
         })
 
