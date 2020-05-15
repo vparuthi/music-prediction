@@ -24,9 +24,9 @@
             <h1 class="flex flex-wrap flex-100 genre-title animation">{{genre.title()}}</h1>
             {% for playlist in playlists %}
                 {% if playlist.get('images') %}
-                    <div class="flex flex-center img-container animation">
+                    <div class="flex flex-center img-container">
                         <a href={{playlist.get('external_urls').get('spotify')}}>
-                            <div class="flex playlist">
+                            <div class="flex playlist animation">
                                 <img src={{playlist.get('images')[0].get('url')}} class="playlist-image">
                             </div>
                         </a>
