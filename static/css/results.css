@@ -29,7 +29,7 @@ body{
 
 /* RESULTS GRID */
 .results {
-    min-height: 760px
+    min-height: 760px;
     transition: all 2s;
 }
 
@@ -39,6 +39,11 @@ body{
 
 .playlist-image{
     width: inherit;
+    transition: all .5s cubic-bezier(0.42, 0, 0.06, 2.03);
+}
+
+.playlist-image:hover {
+    transform: scale(1.1);
 }
 
 .playlist{
@@ -51,14 +56,6 @@ body{
 
 .img-container {
     flex: 1 1;
-}
-
-.playlist-img{
-    transition: all .5s cubic-bezier(0.42, 0, 0.06, 2.03);
-}
-
-.playlist-img:hover{
-    transform: scale(1.1);
 }
 
 .response-btn{
